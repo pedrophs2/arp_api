@@ -2,7 +2,7 @@ const express = require('express')
 const server = express()
 server.use(express.json())
 
-const UserRoutes = require('./routes/UserRoutes')
+const UserRoutes = require('./src/routes/UserRoutes')
 
 server.use('/user', UserRoutes)
 
