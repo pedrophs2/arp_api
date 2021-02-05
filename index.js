@@ -11,5 +11,5 @@ server.get('/', (req, res) => {
 })
 
 server.listen(3000, () => {
-    console.log('API Online !!')
+    console.log('API ONLINE => http://arpdevs-com-br.umbler.net/api/\'project\'/\'class\'/\'endpoint\'')
 })
