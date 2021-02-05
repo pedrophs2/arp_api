@@ -1,5 +1,8 @@
 # API para requisições de teste / ARP_API
 
+## Documentação de EndPoints API: _Swagger_
+#### Em Breve
+
 ## Padrões de nomenclatura
 #### Todos os exemplos abaixo usarão como base o projeto: `Business-Cook`
 
