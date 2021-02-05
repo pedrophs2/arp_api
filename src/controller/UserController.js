@@ -3,11 +3,21 @@ const UserModel = require('../model/UserModel')
 class UserController {
     
     async create(req, res) {
-        const task = new UserModel(req.body)
+        const user = new UserModel(req.body)
         
-        await task.save()
+        await user.save()
         .then( response => {
             return res.status(200).json(response)
+        })
+        .catch( error => {
+            return res.status(500).json(error)
+        })
+    }
+
+    async list(req, res) {
+        await UserModel.find()
+        .then( response => {
+            return res.status(2002).json(response)
         })
         .catch( error => {
             return res.status(500).json(error)
