@@ -4,7 +4,7 @@ server.use(express.json())
 
 const UserRoutes = require('./src/routes/bck/UserRoutes')
 
-server.use('api/bck/user', UserRoutes)
+server.use('/api/bck/user', UserRoutes)
 
 server.get('/', (req, res) => {
     res.send('<h1>Working ! Only API for now...</h1>')
