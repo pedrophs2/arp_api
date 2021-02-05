@@ -1,5 +1,9 @@
 # API para requisições de teste / ARP_API
 
+- Para executar a aplicação em modo de desenvolvimento basta rodar o comando: `npm run dev`. Esse comando irá:
+   - Executar o `npm install` e instalar todas as dependências necessárias
+   - Executar o projeto com o `nodemon` possibilitando que as alterações na API sejam reconhecidas em tempo real, e o projeto recarregado.
+
 ## Documentação de EndPoints API: _Swagger_
 #### Em Breve
 
