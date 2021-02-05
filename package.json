@@ -1,10 +1,11 @@
 {
   "name": "arp-api",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && node index"
+    "start": "npm install && node index",
+    "dev": "nodemon index"
   },
   "keywords": [],
   "author": "Pedro Henrique",

@@ -1,17 +1,17 @@
 const express = require('express')
 const server = express()
+const path = require('path')
+
 server.use(express.json())
 
 const UserRoutes = require('./src/routes/bck/UserRoutes')
+const WebRouter = require('./src/routes/web/WebRoutes')
 
 server.use('/api/bck/user', UserRoutes)
+server.use('/', WebRouter)
 
 server.get('/', (req, res) => {
-    res.send(
-        '<h1>Working ! Only API for now...</h1>' +
-        '<br>' + 
-        'Check our GitHub Documentation: <a href="https://github.com/pedrophs2/arp_api">Click Here !</a>'
-        )
+    res.sendFile(path.join(__dirname, 'web/index.html'))
 })
 
 server.listen(3000, () => {
