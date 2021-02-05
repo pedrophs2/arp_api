@@ -8,4 +8,4 @@ const UserSchema = new Schema({
     created: {type: Date, default: Date.now()}
 })
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('BC_User', UserSchema)
