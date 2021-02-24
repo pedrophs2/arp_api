@@ -34,8 +34,7 @@ Devem ser precedidas de uma pasta que identifique o projeto.
  - Abra o GitHub Desktop ou qualquer outro de sua preferência e crie um branch
  - Troque pra esse branch e desenvolva sua solução
  - Após a solução finalizada e testada, publique o branch no GitHub
- - Vá ao branch `master`, e faça o merge do seu branch no master 
-    - Vídeo de apoio: _Em Desenvolvimento_
+ - Vá ao branch `master`, e faça o merge do seu branch no master
  - Caso a solução não contenha erros, o próprio Umbler irá compilar o projeto e subir a versão automaticamente
 
 #### Caso você tenha pulado alguma dessas etapas, ou mesmo que tenha seguido todas, ocorreu um erro na aplicação após o deploy siga esses passos:
