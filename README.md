@@ -46,4 +46,7 @@ Devem ser precedidas de uma pasta que identifique o projeto.
  - Clique no segunto item (Restaurar)
  - Marque a opção _Deletar todos os arquivos_
  - Clique em restaurar
-    - Vídeo de apoio: _Em desenvolvimento_
+    - Vídeo de apoio: https://youtu.be/kukz3Gi7swA
+
+#### Vídeo de Apoio: GitHub Desktop
+ - https://youtu.be/KzVWLm12Y_s
