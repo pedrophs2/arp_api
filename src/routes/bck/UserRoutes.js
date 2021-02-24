@@ -4,6 +4,9 @@ const router = express.Router()
 const UserController = require('../../controller/bck/UserController')
 
 router.get('/', UserController.listUsers)
-router.post('/', UserController.saveUser)
+router.get('/:id', UserController.getUser)
+router.post('/', UserController.createUser)
+router.put('/:id', UserController.updateUser)
+router.delete('/:id', UserController.deleteUser)
 
 module.exports = router

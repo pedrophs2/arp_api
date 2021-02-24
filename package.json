@@ -1,6 +1,6 @@
 {
   "name": "arp-api",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "dev": "npm install && nodemon index"
   },
   "keywords": [],
-  "author": "Pedro Henrique",
+  "author": "ArpDevs",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
