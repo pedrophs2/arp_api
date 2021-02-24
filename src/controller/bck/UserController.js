@@ -1,5 +1,4 @@
 const db = require('../../config/database')
-const User = require('../../model/bck/User')
 
 class UserController {
 
