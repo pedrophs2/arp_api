@@ -6,7 +6,6 @@ class UserController {
         try{
             const conn = await db.connect()
             let [data] = await conn.query('SELECT * FROM BCK_USER')
-            console.log(data[0])
             
             if(data[0] != undefined)
                 res.status(200).send(data)
@@ -22,7 +21,6 @@ class UserController {
         const conn = await db.connect()
         const sql = 'INSERT INTO BCK_USER (user_name, user_pass, user_phone, notes) VALUES (?, ?, ?, ?)'
         const values = [req.body.name, req.body.pass, req.body.phone, req.body.notes]
-        console.log(values)
         let data = conn.query(sql, values)
         
         if(data != null)
