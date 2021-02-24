@@ -13,7 +13,7 @@
 Para manter uma organização nos arquivos da API e para que um integrante não modifique o trabalho do outro seguiremos as seguintes regras:
 
 - Arquivos e Classes: 
-Arquivos e Classes devem ter como prefixo o nome do sistema que pertencem. Essa regra deve ser seguida pois o mongoDB gera o nome da entidade nos registros do banco baseado no nome que damos na entidade, caso coloquemos todos iguais ele não irá diferenciar os campos e irá misturar os registros das tabelas
+Arquivos e Classes devem ter como prefixo o nome do sistema que pertencem. Essa regra deve ser seguida pois vamos usar uma API e Banco de Dados para todos os testes, caso coloquemos todos iguais, será difícil separar os projetos e eventualmente teremos problema de códigos se sobrescrevendo entre projetos.
 
    - Modelo: `prefixo_arquivo.extensão` 
    - Exemplo: `bck_usuario.js`
