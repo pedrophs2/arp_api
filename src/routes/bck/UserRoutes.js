@@ -3,7 +3,7 @@ const router = express.Router()
 
 const UserController = require('../../controller/bck/UserController')
 
-router.post('/', UserController.create)
-router.get('/', UserController.list)
+router.get('/', UserController.listUsers)
+router.post('/', UserController.saveUser)
 
 module.exports = router
