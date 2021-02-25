@@ -21,7 +21,7 @@ class AuthController {
             }
 
         }catch(error) {
-            res.status(500).send('Erro na requisição: ', error)
+            res.status(500).send({error: 'Erro na requisição: ' + error, response: error})
         }
     }
 
