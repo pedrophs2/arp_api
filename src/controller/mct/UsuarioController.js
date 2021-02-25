@@ -10,10 +10,10 @@ class UsuarioController {
             if(data[0] != undefined)
                 res.status(200).send(data)
             else
-                res.status(204).send({error: 'Nenhum usuário cadastrado', response: []})
+                res.status(204).send({message: 'Nenhum usuário cadastrado', error: []})
             
         } catch (error) {
-            res.status(500).send({error: 'Erro no processo de requisição', response: error})
+            res.status(500).send({message: 'Erro no processo de requisição', error: error})
         }
     }
 
@@ -27,10 +27,10 @@ class UsuarioController {
             if(data[0] != undefined)
                 res.status(200).send(data)
             else
-                res.status(204).send({error: 'Nenhum usuário encontrado', response: []})
+                res.status(204).send({message: 'Nenhum usuário encontrado', error: []})
 
         } catch (error) {
-            res.status(500).send({error: 'Erro no processo de requisição', response: error})
+            res.status(500).send({message: 'Erro no processo de requisição', error: error})
         }
     }
 
@@ -47,10 +47,10 @@ class UsuarioController {
             if(data != null)
                 res.status(201).send('Usuário inserido com sucesso')
             else
-                res.status(500).send({error: 'Erro na inserção de usuário', response: null})
+                res.status(500).send({message: 'Erro na inserção de usuário', error: null})
 
         }catch (error) {
-            res.status(500).send({error: 'ERRO: ', response: error})
+            res.status(500).send({message: 'ERRO: ', error: error})
         }
     }
 
@@ -67,10 +67,10 @@ class UsuarioController {
             if(data != null)
                 res.status(200).send('Usuário atualizado com sucesso')
             else
-                res.status(500).send({error: 'Erro na atualização do usuário', response: null})
+                res.status(500).send({message: 'Erro na atualização do usuário', error: null})
 
         } catch(error) {
-            res.status(500).send({error: 'ERRO', response: error})
+            res.status(500).send({message: 'ERRO', error: error})
         }
     }
 
@@ -85,10 +85,10 @@ class UsuarioController {
             if(data != undefined)
                 res.status(200).send('Usuário excluído com sucesso')
             else
-                res.status(500).send({error: 'Erro na exclusão do usuário'})
+                res.status(500).send({message: 'Erro na exclusão do usuário'})
 
         } catch(error) {
-            res.status(500).send({error: 'Erro na exclusão do usuário', response: error})
+            res.status(500).send({message: 'Erro na exclusão do usuário', error: error})
         }
     }
 

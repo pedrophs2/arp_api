@@ -10,10 +10,10 @@ class OrcamentoController {
             if(data[0] != undefined)
                 res.status(200).send(data)
             else
-                res.status(204).send({error: 'Nenhum usuário cadastrado', response: []})
+                res.status(204).send({message: 'Nenhum usuário cadastrado', response: []})
             
         } catch (error) {
-            res.status(500).send({error: 'Erro no processo de requisição', response: error})
+            res.status(500).send({message: 'Erro no processo de requisição', error: error})
         }
     }
 
@@ -27,10 +27,10 @@ class OrcamentoController {
             if(data[0] != undefined)
                 res.status(200).send(data)
             else
-                res.status(204).send({error: 'Nenhum usuário encontrado', response: []})
+                res.status(204).send({message: 'Nenhum usuário encontrado', error: []})
 
         } catch (error) {
-            res.status(500).send({error: 'Erro no processo de requisição', response: error})
+            res.status(500).send({message: 'Erro no processo de requisição', error: error})
         }
     }
 
@@ -47,9 +47,9 @@ class OrcamentoController {
             if(data != null)
                 res.status(201).send('Orçamento criado com sucesso')
             else
-                res.status(400).send('Erro na inserção do orçamento')
+                res.status(400).send({message: 'Erro na inserção do orçamento'})
         } catch(error) {
-            res.status(500).send({error: 'Erro na requisição: ', response: error})
+            res.status(500).send({message: 'Erro na requisição: ', error: error})
         }
     }
 
@@ -68,7 +68,7 @@ class OrcamentoController {
             else
                 res.status(400).send('Erro na atualização do orçamento')
         } catch(error) {
-            res.status(500).send({error: 'Erro na requisição', response: error})
+            res.status(500).send({message: 'Erro na requisição', error: error})
         }
     }
 
@@ -84,7 +84,7 @@ class OrcamentoController {
             else
                 res.status(400).send('Erro na exclusão do orçamento')
         } catch(error) {
-            res.status(500).send({error: 'Erro na requisição de dados', response: error})
+            res.status(500).send({message: 'Erro na requisição de dados', error: error})
         }
     }
 

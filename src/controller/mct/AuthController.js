@@ -17,11 +17,11 @@ class AuthController {
                 else
                     res.status(403).send('Usuário ou senha incorretos')
             } else {
-                res.status(204).send('Usuário ou senha incorretos')
+                res.status(400).send('Usuário ou senha incorretos')
             }
 
         }catch(error) {
-            res.status(500).send({error: 'Erro na requisição: ' + error, response: error})
+            res.status(500).send({message: 'Erro na requisição: ' + error, error: error})
         }
     }
 
