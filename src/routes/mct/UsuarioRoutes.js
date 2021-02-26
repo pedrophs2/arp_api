@@ -12,7 +12,7 @@ router.put('/:id', verifyJWT, UsuarioController.updateUser)
 router.delete('/:id', verifyJWT, UsuarioController.deleteUser)
 
 function verifyJWT(req, res, next) {
-    const token = req.headers['authorization']
+    const token = req.headers['Authorization']
     jwt.verify(token, hash, (err, decoded) => {
         if(err) return res.status(401).send({error: 'Token Inválido ou Ausente'})
         next()
