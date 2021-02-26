@@ -1,12 +1,17 @@
 const express = require('express')
-const server = express()
 const cors = require('cors')
+const bodyParser = require('body-parser')
+// const jwt = require('jsonwebtoken')
+
+const server = express()
 const path = require('path')
+
 const db = require('./src/config/database')
 
 
 server.use(express.json())
 server.use(cors())
+server.use(bodyParser.json())
 
 //Business Cook
 const UserRoutes = require('./src/routes/bck/UserRoutes')
