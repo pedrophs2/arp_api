@@ -17,7 +17,7 @@ class AuthController {
             if(data != undefined){
                 if(data.usuario_senha == user.usuario_senha){
                     const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: 1800})
-                    res.status(200).send({auth: true, token, user: data})
+                    res.status(200).send({auth: true, token, usuario: data})
                 }else{
                     res.status(401).send({auth:false, message: 'Usuário ou senha incorretos'})
                 }
