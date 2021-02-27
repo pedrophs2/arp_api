@@ -30,6 +30,27 @@ class AuthController {
         }
     }
 
+    async createUser(req, res) {
+        try {
+            let user = req.body
+
+            const conn = await db.connect()
+            const sql = 'INSERT INTO MCT_USUARIO (usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip, usuario_categoria) VALUES (?, ?, ?, ?, ?, ?, ?)'
+            const values = [user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip, user.usuario_categoria != undefined ? user.usuario_categoria : 0]
+
+            console.log(values)
+            let data = conn.query(sql, values)
+            
+            if(data != null)
+                res.status(201).send('Usuário criado com sucesso')
+            else
+                res.status(400).send({message: 'Erro na criação de usuário', error: null})
+
+        }catch (error) {
+            res.status(500).send({message: 'ERRO: ', error: error})
+        }
+    }
+
 }
 
 module.exports = new AuthController()
