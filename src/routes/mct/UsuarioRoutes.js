@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const jwt = require('../../middleware/JwtCheck')
 
-
 const UsuarioController = require('../../controller/mct/UsuarioController')
 
 router.get('/', jwt.verifyJWT, UsuarioController.listUsers)

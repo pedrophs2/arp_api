@@ -2,6 +2,7 @@ const { restart } = require('nodemon')
 const db = require('../../config/database')
 const jwt = require('jsonwebtoken')
 const hash = (require('../../config/jwt')).hash
+const nodemailer = require('../../config/nodemailer')
 
 class AuthController {
 
@@ -48,6 +49,15 @@ class AuthController {
 
         }catch (error) {
             res.status(500).send({message: 'ERRO: ', error: error})
+        }
+    }
+
+    async forgot(req, res) {
+        try {
+            let data = await nodemailer.main(req.body.email, req.body.token)
+            res.status(200).send(data)
+        }catch(error) {
+            res.status(500).send({message: 'Erro: ' + error, error: error})
         }
     }
 
