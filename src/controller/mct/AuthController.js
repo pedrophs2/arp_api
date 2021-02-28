@@ -54,8 +54,15 @@ class AuthController {
 
     async forgot(req, res) {
         try {
-            let data = await nodemailer.main(req.body.email, req.body.token)
-            res.status(200).send(data)
+            const conn = await db.connect()
+            let [resp] = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [req.body.usuario_email])
+            let data = resp[0]
+            
+            if(data == undefined)
+                res.status(401).send({sent: false, message: 'Nenhuma conta encontrada'})
+
+            let email = await nodemailer.main(req.body.usuario_email, data.usuario_senha)
+            res.status(200).send({sent: true})
         }catch(error) {
             res.status(500).send({message: 'Erro: ' + error, error: error})
         }
