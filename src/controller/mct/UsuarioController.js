@@ -39,9 +39,10 @@ class UsuarioController {
             let user = req.body
 
             const conn = await db.connect()
-            const sql = 'INSERT INTO MCT_USUARIO (usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip) VALUES (?, ?, ?, ?, ?, ?)'
-            const values = [user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip]
+            const sql = 'INSERT INTO MCT_USUARIO (usuario_cpf, usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip) VALUES (?, ?, ?, ?, ?, ?, ?)'
+            const values = [user.usuario_cpf, user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip]
 
+            console.log(values)
             let data = conn.query(sql, values)
             
             if(data != null)
@@ -50,7 +51,7 @@ class UsuarioController {
                 res.status(500).send({message: 'Erro na inserção de usuário', error: null})
 
         }catch (error) {
-            res.status(500).send({message: 'ERRO: ', error: error})
+            res.status(500).send({message: 'Erro: ' + error, error: error})
         }
     }
 
