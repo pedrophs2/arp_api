@@ -9,6 +9,7 @@ class AuthController {
 
     async login(req, res) {
         let user = req.body
+        const expire = 864000
 
         try{
             const conn = await db.connect()
@@ -17,7 +18,8 @@ class AuthController {
 
             if(data != undefined){
                 if(data.usuario_senha == user.usuario_senha){
-                    const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: 1800})
+                    const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: expire})
+                    console.log(`Usuário ${data.usuario_email} autenticado por ${(expire/3600)/24} dias`)
                     res.status(200).send({auth: true, token, usuario: data})
                 }else{
                     res.status(401).send({auth:false, message: 'Usuário ou senha incorretos'})
