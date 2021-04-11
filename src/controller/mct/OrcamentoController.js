@@ -36,7 +36,7 @@ class OrcamentoController {
             let [data] = await conn.query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id = ?', [id])
             
             if(data[0] != undefined)
-                res.status(200).send(data)
+                res.status(200).send(data[0])
             else
                 res.status(204).send({message: 'Nenhum usuário encontrado', error: []})
 
