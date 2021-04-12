@@ -111,7 +111,7 @@ class OrcamentoController {
             orcamento_acrescimo = ?,
             orcamento_imposto = ?,
             orcamento_lucro = ?,
-            orcamento_valor_fina = ?
+            orcamento_valor_final = ?
             WHERE orcamento_id = ?`
             const values = [
                 orcamento.orcamento_nome, orcamento.orcamento_total, orcamento.orcamento_data, orcamento.orcamento_mo_interna,
