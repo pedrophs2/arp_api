@@ -1,15 +1,6 @@
 const db = require('../../config/database')
 const params = require('../../providers/QueryBuilder')
 
-const columnsUpdate = [
-    'orcamento_nome', 'orcamento_total', 'orcamento_data', 'orcamento_mo_interna',
-    'orcamento_mo_externa', 'orcamento_disco', 'orcamento_copo_cone_60', 'orcamento_copo_cone_120',
-    'orcamento_copo_reto_60', 'orcamento_copo_reto_120', 'orcamento_diamantada_50', 'orcamento_diamantada_100',
-    'orcamento_diamantada_200', 'orcamento_velcro_220', 'orcamento_velcro_320', 'orcamento_velcro_400', 'orcamento_velcro_600',
-    'orcamento_velcro_800', 'orcamento_velcro_1200', 'orcamento_massa_plastica', 'orcamento_dma', 'orcamento_resina',
-    'orcamento_cola_cuba', 'orcamento_silicone', 'orcamento_estopa', 'orcamento_furos', 'orcamento_tubo_inox',
-    'orcamento_distancia', 'orcamento_alimentacao', 'orcamento_desconto','orcamento_acrescimo', 'orcamento_imposto', 'orcamento_lucro', 'orcamento_valor_final'
-]
 const columnsInsert = [
     'orcamento_nome', 'orcamento_total', 'orcamento_mo_interna',
     'orcamento_mo_externa', 'orcamento_disco', 'orcamento_copo_cone_60', 'orcamento_copo_cone_120',
@@ -59,7 +50,7 @@ class OrcamentoController {
 
         try {
             const conn = await db.connect()
-            const query = `INSERT INTO MCT_ORCAMENTO (${params.buildParams(columnsInsert)}) VALUES (${params.buildParamsSlot(34)})`
+            const query = `INSERT INTO MCT_ORCAMENTO (${params.buildParams(columnsInsert)}) VALUES (${params.buildParamsSlot(33)})`
             const values = [
                 orcamento.orcamento_nome, orcamento.orcamento_total, orcamento.orcamento_mo_interna,
                 orcamento.orcamento_mo_externa, orcamento.orcamento_disco, orcamento.orcamento_copo_cone_60, orcamento.orcamento_copo_cone_120,
