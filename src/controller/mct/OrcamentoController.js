@@ -52,7 +52,7 @@ class OrcamentoController {
             const conn = await db.connect()
             const query = `INSERT INTO MCT_ORCAMENTO (${params.buildParams(columns)}) VALUES (${params.buildParamsSlot(34)})`
             const values = [
-                orcamento.orcamento_nome, orcamento.orcamento_total, new Date.getTime(), orcamento.orcamento_mo_interna,
+                orcamento.orcamento_nome, orcamento.orcamento_total, null, orcamento.orcamento_mo_interna,
                 orcamento.orcamento_mo_externa, orcamento.orcamento_disco, orcamento.orcamento_copo_cone_60, orcamento.orcamento_copo_cone_120,
                 orcamento.orcamento_copo_reto_60, orcamento.orcamento_copo_reto_120, orcamento.orcamento_diamantada_50, orcamento.orcamento_diamantada_100,
                 orcamento.orcamento_diamantada_200, orcamento.orcamento_velcro_220, orcamento.orcamento_velcro_320, orcamento.orcamento_velcro_400, orcamento.orcamento_velcro_600,
