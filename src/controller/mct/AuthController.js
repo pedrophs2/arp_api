@@ -1,53 +1,31 @@
-const { restart } = require('nodemon')
-const db = require('../../config/database')
-const jwt = require('jsonwebtoken')
-const hash = (require('../../config/jwt')).hash
-const nodemailer = require('../../config/nodemailer')
+const AuthServices = require('../../services/mct/AuthServices')
 
 class AuthController {
 
-
     async login(req, res) {
-        let user = req.body
-        const expire = 864000
+        try {
+            let user = req.body        
+            let response = await AuthServices.login(user)
 
-        try{
-            const conn = await db.connect()
-            let [resp] = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [user.usuario_email])
-            let data = resp[0]
-
-            if(data != undefined){
-                if(data.usuario_senha == user.usuario_senha){
-                    const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: expire})
-                    console.log(`Usuário ${data.usuario_email} autenticado por ${(expire/3600)/24} dias`)
-                    res.status(200).send({auth: true, token, usuario: data})
-                }else{
-                    res.status(401).send({auth:false, message: 'Usuário ou senha incorretos'})
-                }
-            } else {
-                res.status(400).send({message:'Usuário ou senha incorretos'})
+            if(response.token != null){ 
+                res.status(200).send(response)
+            }else{
+                res.status(400).send({message: 'Usuário ou senha incorretos.'})
             }
-
-        }catch(error) {
-            res.status(500).send({message: 'Erro na requisição: ' + error, error: error})
+        } catch(error) {
+            res.status(500).send({message: 'Erro no processo de requisição' + error})
         }
     }
 
     async createUser(req, res) {
         try {
             let user = req.body
+            let response = await AuthServices.createUser(user)
 
-            const conn = await db.connect()
-            const sql = 'INSERT INTO MCT_USUARIO (usuario_cpf, usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip, usuario_categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
-            const values = [user.usuario_cpf, user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip, user.usuario_categoria != undefined ? user.usuario_categoria : 0]
-
-            console.log(values)
-            let data = conn.query(sql, values)
-            
-            if(data != null)
+            if(response)
                 res.status(201).send('Usuário criado com sucesso')
             else
-                res.status(400).send({message: 'Erro na criação de usuário', error: null})
+                res.status(400).send('Erro na criação do usuário')
 
         }catch (error) {
             res.status(500).send({message: 'ERRO: ' + error, error: error})
@@ -56,15 +34,13 @@ class AuthController {
 
     async forgot(req, res) {
         try {
-            const conn = await db.connect()
-            let [resp] = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [req.body.usuario_email])
-            let data = resp[0]
+            let response = await AuthServices.forgot(req.body.usuario_email)
             
-            if(data == undefined)
-                res.status(401).send({sent: false, message: 'Nenhuma conta encontrada'})
-
-            let email = await nodemailer.main(req.body.usuario_email, data.usuario_senha)
-            res.status(200).send({sent: true})
+            if(response) {
+                res.status(200).send('Senha enviada para o email solicitado')
+            }else{
+                res.status(400).send('Não foi encontrada uma conta com essas credenciais')
+            }
         }catch(error) {
             res.status(500).send({message: 'Erro: ' + error, error: error})
         }

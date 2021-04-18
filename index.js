@@ -19,6 +19,7 @@ const UserRoutes = require('./src/routes/bck/UserRoutes')
 const AuthRoutes = require('./src/routes/mct/AuthRoutes')
 const UsuarioRoutes = require('./src/routes/mct/UsuarioRoutes')
 const OrcamentoRoutes = require('./src/routes/mct/OrcamentoRoutes')
+const OrcamentoPDFRoutes = require('./src/routes/mct/PDF/OrcamentoPDFRoutes')
 
 //WEB
 const WebRouter = require('./src/routes/web/WebRoutes')
@@ -30,6 +31,7 @@ server.use('/api/bck/user', UserRoutes)
 server.use('/api/mct/auth', AuthRoutes)
 server.use('/api/mct/usuario', UsuarioRoutes)
 server.use('/api/mct/orcamento', OrcamentoRoutes)
+server.use('/api/mct/pdf/orcamento', OrcamentoPDFRoutes)
 
 //WEB
 server.use('/', WebRouter)
