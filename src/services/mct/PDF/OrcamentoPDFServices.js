@@ -2,6 +2,8 @@ const fs = require('fs')
 const pdf = require('html-pdf')
 const path = require('path')
 
+const OrcamentoServices = require('../OrcamentoServices')
+
 const orcamentoHtml = fs.readFileSync(path.join(__dirname, '../../../assets/html/orcamento-resumido.html'), 'utf-8')
 const options = {
     type: 'pdf',
@@ -11,7 +13,9 @@ const options = {
 
 class OrcamentoPDFServices {
 
-    generatePDFOrcamento(req, res) {
+    async generatePDFOrcamento(req, res) {
+        let orcamento = await OrcamentoServices.getOrcamentoById(req.params.id)
+
         pdf.create(orcamentoHtml, options).toBuffer((err, buffer) => {
             if(err) return res.status(500).json(err)
 
