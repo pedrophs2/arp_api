@@ -20,6 +20,7 @@
     "mongoose": "^5.11.15",
     "mysql2": "^2.2.5",
     "nodemailer": "^6.5.0",
+    "pdf-creator-node": "^2.2.2",
     "sequelize": "^6.5.0"
   },
   "devDependencies": {
