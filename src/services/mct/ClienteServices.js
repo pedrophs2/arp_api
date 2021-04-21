@@ -56,7 +56,7 @@ class ClienteServices {
             const query = 'UPDATE MCT_CLIENTE SET cliente_nome = ?, cliente_fone = ?, cliente_endereco = ? WHERE cliente_id = ?'
             const values = [cliente.cliente_nome, cliente.cliente_fone, cliente.cliente_endereco, cliente.cliente_endereco, cliente.cliente_id]
 
-            console.log(query + values)
+            console.log(values)
 
             let data = await conn.query(query, values)
 
