@@ -166,15 +166,15 @@
                         <hr>
                         <div class="row">
                             <div class="col-12 center">  
-                                <h3><b>RELATÓRIO DE {{orcamento.cliente.nome}}</b></h3>
+                                <h3><b>RELATÓRIO DE {{cliente_nome}}</b></h3>
                             </div>  
                         </div>
                         <br><hr>
                         <div class="row invoice-info">
                             <div class="col-12 right">   
                                 <small style="font-size: 15px;">
-                                    <b> Nº do Orçamento:</b> {{orcamento.orcamento_id}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                    <b> Data:</b> {{orcamento.orcamento_data}} 
+                                    <b> Nº do Orçamento:</b> {{orcamento_id}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                    <b> Data:</b> {{orcamento_data}} 
                                 </small>
                             </div>
                         </div>
@@ -191,9 +191,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{orcamento.cliente.cliente_nome}}</td>
-                                            <td>{{orcamento.cliente.cliente_endereco}}</td>
-                                            <td>{{orcamento.cliente.cliente_tel}}</td>
+                                            <td>{{cliente_nome}}</td>
+                                            <td>{{cliente_endereco}}</td>
+                                            <td>{{cliente_tel}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -212,9 +212,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{orcamento.orcamento_nome}</td>
+                                            <td>{{orcamento_nome}}</td>
                                             <td>Descrição do Orçamento</td>
-                                            <td><font color="green"><b>{{orcamento.orcamento_total}}</b></font></td>
+                                            <td><font color="green"><b>R$ {{orcamento_total}}</b></font></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -230,11 +230,11 @@
                                     <table class="table">
                                         <tr>
                                             <th style="width:90%">Valor:</th>
-                                            <td>{{orcamento.orcamento_total}}</td>
+                                            <td>R$ {{orcamento_total}}</td>
                                         </tr>
                                         <tr>
                                             <th>Valor Total:</th>
-                                            <td>{{orcamento.orcamento_valor_final}}</td>
+                                            <td>R$ {{orcamento_valor_final}}</td>
                                         </tr>
                                     </table>
                                 </div>
