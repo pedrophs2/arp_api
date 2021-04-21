@@ -48,7 +48,7 @@ class ClienteController {
             let response = await ClienteServices.updateCliente(customer)
 
             if(response)
-                res.status(201).send('Cliente criado com sucesso !')
+                res.status(201).send('Cliente salvo com sucesso !')
             else
                 res.status(400).send('Erro na criação do cliente')
         } catch(error) {
