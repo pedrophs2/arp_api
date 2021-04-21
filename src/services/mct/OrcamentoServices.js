@@ -2,7 +2,7 @@ const db = require('../../config/database')
 const params = require('../../providers/QueryBuilder')
 
 const columnsInsert = [
-    'orcamento_nome', 'orcamento_total', 'orcamento_mo_interna',
+    'orcamento_id_cliente', 'orcamento_id_usuario', 'orcamento_nome', 'orcamento_total', 'orcamento_mo_interna',
     'orcamento_mo_externa', 'orcamento_disco', 'orcamento_copo_cone_60', 'orcamento_copo_cone_120',
     'orcamento_copo_reto_60', 'orcamento_copo_reto_120', 'orcamento_diamantada_50', 'orcamento_diamantada_100',
     'orcamento_diamantada_200', 'orcamento_velcro_220', 'orcamento_velcro_320', 'orcamento_velcro_400', 'orcamento_velcro_600',
@@ -51,13 +51,14 @@ class OrcamentoServices {
             const conn = await db.connect()
             const query = `INSERT INTO MCT_ORCAMENTO (${params.buildParams(columnsInsert)}) VALUES (${params.buildParamsSlot(33)})`
             const values = [
-                orcamento.orcamento_nome, orcamento.orcamento_total, orcamento.orcamento_mo_interna,
-                orcamento.orcamento_mo_externa, orcamento.orcamento_disco, orcamento.orcamento_copo_cone_60, orcamento.orcamento_copo_cone_120,
-                orcamento.orcamento_copo_reto_60, orcamento.orcamento_copo_reto_120, orcamento.orcamento_diamantada_50, orcamento.orcamento_diamantada_100,
-                orcamento.orcamento_diamantada_200, orcamento.orcamento_velcro_220, orcamento.orcamento_velcro_320, orcamento.orcamento_velcro_400, orcamento.orcamento_velcro_600,
-                orcamento.orcamento_velcro_800, orcamento.orcamento_velcro_1200, orcamento.orcamento_massa_plastica, orcamento.orcamento_dma, orcamento.orcamento_resina,
-                orcamento.orcamento_cola_cuba, orcamento.orcamento_silicone, orcamento.orcamento_estopa, orcamento.orcamento_furos, orcamento.orcamento_tubo_inox,
-                orcamento.orcamento_distancia, orcamento.orcamento_alimentacao, orcamento.orcamento_desconto,orcamento.orcamento_acrescimo, orcamento.orcamento_imposto, orcamento.orcamento_lucro, orcamento.orcamento_valor_final
+                orcamento.orcamento_id_cliente, orcamento.orcamento_id_usuario, orcamento.orcamento_nome, orcamento.orcamento_total, 
+                orcamento.orcamento_mo_interna, orcamento.orcamento_mo_externa, orcamento.orcamento_disco, orcamento.orcamento_copo_cone_60, 
+                orcamento.orcamento_copo_cone_120, orcamento.orcamento_copo_reto_60, orcamento.orcamento_copo_reto_120, orcamento.orcamento_diamantada_50, 
+                orcamento.orcamento_diamantada_100, orcamento.orcamento_diamantada_200, orcamento.orcamento_velcro_220, orcamento.orcamento_velcro_320, 
+                orcamento.orcamento_velcro_400, orcamento.orcamento_velcro_600, orcamento.orcamento_velcro_800, orcamento.orcamento_velcro_1200, 
+                orcamento.orcamento_massa_plastica, orcamento.orcamento_dma, orcamento.orcamento_resina, orcamento.orcamento_cola_cuba, 
+                orcamento.orcamento_silicone, orcamento.orcamento_estopa, orcamento.orcamento_furos, orcamento.orcamento_tubo_inox, orcamento.orcamento_distancia,
+                orcamento.orcamento_alimentacao, orcamento.orcamento_desconto,orcamento.orcamento_acrescimo, orcamento.orcamento_imposto, orcamento.orcamento_lucro, orcamento.orcamento_valor_final
             ]
 
             let data = await conn.query(query, values)

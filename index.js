@@ -20,6 +20,7 @@ const AuthRoutes = require('./src/routes/mct/AuthRoutes')
 const UsuarioRoutes = require('./src/routes/mct/UsuarioRoutes')
 const OrcamentoRoutes = require('./src/routes/mct/OrcamentoRoutes')
 const OrcamentoPDFRoutes = require('./src/routes/mct/PDF/OrcamentoPDFRoutes')
+const ClienteRoutes = require('./src/routes/mct/ClienteRoutes')
 
 //WEB
 const WebRouter = require('./src/routes/web/WebRoutes')
@@ -32,6 +33,7 @@ server.use('/api/mct/auth', AuthRoutes)
 server.use('/api/mct/usuario', UsuarioRoutes)
 server.use('/api/mct/orcamento', OrcamentoRoutes)
 server.use('/api/mct/pdf/orcamento', OrcamentoPDFRoutes)
+server.use('/api/mct/cliente', ClienteRoutes)
 
 //WEB
 server.use('/', WebRouter)
