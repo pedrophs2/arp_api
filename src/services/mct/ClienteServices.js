@@ -58,6 +58,8 @@ class ClienteServices {
 
             let data = await conn.query(query, values)
 
+            console.log(data)
+
             if(data != null)
                 return true
             else
