@@ -17,6 +17,21 @@ class ClienteServices {
         }
     }
 
+    async listClientesByUsuarioCliente(usuario_id, cliente_id) {
+        try {
+            const conn = await db.connect()
+            let [data] = await conn.query('SELECT * FROM MCT_CLIENTE WHERE cliente_id_usuario = ? AND cliente_id = ?', [usuario_id, cliente_id])
+
+            if(data[0] != undefined)
+                return data
+            else
+                return null
+        } catch(error) {
+            console.log(error)
+            return null
+        }
+    }
+
     async createCliente(cliente) {
         try {
             const conn = await db.connect()

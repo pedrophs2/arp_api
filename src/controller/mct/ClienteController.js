@@ -15,6 +15,19 @@ class ClienteController {
         }     
     }
 
+    async listClientesByUsuarioCliente(req, res) {
+        try {
+            let response = await ClienteServices.listClientesByUsuarioCliente(req.params.usuario_id, req.params.cliente_id)
+
+            if(response != null)
+                res.status(200).send(response)
+            else
+                res.status(204).send({message: 'Nenhum cliente encontrado'})
+        } catch(error) {
+            res.status(500)({message: 'Erro no processo de requisição', error: error})
+        }     
+    }
+
     async createCliente (req, res) {
         try {
             let customer = req.body
