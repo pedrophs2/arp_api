@@ -18,7 +18,8 @@ class ClienteController {
     async createCliente (req, res) {
         try {
             let customer = req.body
-            let response = await ClienteServicos.createCliente(customer)
+            console.log(customer)
+            let response = await ClienteServices.createCliente(customer)
 
             if(response)
                 res.status(201).send('Cliente criado com sucesso !')
