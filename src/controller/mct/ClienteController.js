@@ -18,8 +18,21 @@ class ClienteController {
     async createCliente (req, res) {
         try {
             let customer = req.body
-            console.log(customer)
             let response = await ClienteServices.createCliente(customer)
+
+            if(response)
+                res.status(201).send('Cliente criado com sucesso !')
+            else
+                res.status(400).send('Erro na criação do cliente')
+        } catch(error) {
+            res.status(500).send({message: 'Erro: ' + error, error: error})
+        }
+    }
+
+    async updateCliente (req, res) {
+        try {
+            let customer = req.body
+            let response = await ClienteServices.updateCliente(customer)
 
             if(response)
                 res.status(201).send('Cliente criado com sucesso !')

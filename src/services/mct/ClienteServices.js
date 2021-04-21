@@ -35,6 +35,25 @@ class ClienteServices {
         }
     }
 
+    async updateCliente(cliente) {
+        try {
+            const conn = await db.connect()
+            const query = 'UPDATE MCT_CLIENTE SET cliente_nome = ?, cliente_fone = ?, cliente_endereco = ? WHERE cliente_id = ?'
+            const values = [cliente.cliente_id_usuario, cliente.cliente_nome, cliente.cliente_fone, cliente.cliente_endereco, cliente.cliente_id]
+
+            let data = await conn.query(query, values)
+
+            if(data != null)
+                return true
+            else
+                return false
+        } catch(error) {
+            console.log(error)
+            return false
+        }
+    }
+
+
 }
 
 module.exports = new ClienteServices()
