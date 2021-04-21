@@ -23,7 +23,7 @@ class ClienteServices {
             let [data] = await conn.query('SELECT * FROM MCT_CLIENTE WHERE cliente_id_usuario = ? AND cliente_id = ?', [usuario_id, cliente_id])
 
             if(data[0] != undefined)
-                return data
+                return data[0]
             else
                 return null
         } catch(error) {
