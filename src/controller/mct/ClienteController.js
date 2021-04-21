@@ -45,6 +45,7 @@ class ClienteController {
     async updateCliente (req, res) {
         try {
             let customer = req.body
+            console.log(req.body)
             let response = await ClienteServices.updateCliente(customer)
 
             if(response)
