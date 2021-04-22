@@ -15,6 +15,7 @@ class OrcamentoServices {
 
     async listOrcamentos(usuario_id) {
         try{
+            console.log(usuario_id)
             const conn = await db.connect()
             let [data] = await conn.query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id_usuario = ?', [usuario_id])
             

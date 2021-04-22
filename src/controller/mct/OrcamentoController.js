@@ -4,6 +4,7 @@ class OrcamentoController {
 
     async listOrcamentos(req, res) {
         try{
+            console.log(req.params)
             let response = await OrcamentoServices.listOrcamentos(req.params.usuario_id)
             
             if(response != null)
