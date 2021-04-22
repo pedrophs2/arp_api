@@ -18,7 +18,10 @@ class OrcamentoPDFServices {
 
     async generatePDFOrcamento(req, res) {
         try{
-            let orcamento = await OrcamentoServices.getOrcamentoById(req.params.id)
+            // let orcamento = await OrcamentoServices.getOrcamentoById(req.params.id)
+            let orcamento = req.body
+            console.log(orcamento)
+
             orcamentoHtml = orcamentoHtml.toString()
 
             // Cliente
@@ -28,7 +31,7 @@ class OrcamentoPDFServices {
             orcamentoHtml = orcamentoHtml.replace('{{cliente_tel}}', '(77) 99862-7414')
 
             // Orcamento
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_id}}', orcamento.orcamento_id)
+            orcamentoHtml = orcamentoHtml.replace('{{orcamento_id}}', orcamento.orcamento_id || 'Não salvo')
             orcamentoHtml = orcamentoHtml.replace('{{orcamento_data}}', orcamento.orcamento_data)
             orcamentoHtml = orcamentoHtml.replace('{{orcamento_nome}}', orcamento.orcamento_nome)
             orcamentoHtml = orcamentoHtml.replace('{{orcamento_total}}', orcamento.orcamento_total)
