@@ -13,10 +13,10 @@ const columnsInsert = [
 
 class OrcamentoServices {
 
-    async listOrcamentos() {
+    async listOrcamentos(usuario_id) {
         try{
             const conn = await db.connect()
-            let [data] = await conn.query('SELECT * FROM MCT_ORCAMENTO')
+            let [data] = await conn.query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id_usuario = ?', [usuario_id])
             
             if(data[0] != undefined)
                 return data
