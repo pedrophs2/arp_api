@@ -49,7 +49,7 @@ class OrcamentoServices {
     async createOrcamento(orcamento) {
         try {
             const conn = await db.connect()
-            const query = `INSERT INTO MCT_ORCAMENTO (${params.buildParams(columnsInsert)}) VALUES (${params.buildParamsSlot(33)})`
+            const query = `INSERT INTO MCT_ORCAMENTO (${params.buildParams(columnsInsert)}) VALUES (${params.buildParamsSlot(35)})`
             const values = [
                 orcamento.orcamento_id_cliente, orcamento.orcamento_id_usuario, orcamento.orcamento_nome, orcamento.orcamento_total, 
                 orcamento.orcamento_mo_interna, orcamento.orcamento_mo_externa, orcamento.orcamento_disco, orcamento.orcamento_copo_cone_60, 
