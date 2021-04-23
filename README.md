@@ -16,12 +16,12 @@ Para manter uma organização nos arquivos da API e para que um integrante não 
 Arquivos e Classes devem ter como prefixo o nome do sistema que pertencem. Essa regra deve ser seguida pois vamos usar uma API e Banco de Dados para todos os testes, caso coloquemos todos iguais, será difícil separar os projetos e eventualmente teremos problema de códigos se sobrescrevendo entre projetos.
 
    - Modelo: `prefixo_arquivo.extensão` 
-   - Exemplo: `bck_usuario.js`
+   - Exemplo: `bck_usuario.ts`
 
 - Pastas principais (Model, Controller, Routes, Middleware...): 
 Devem ser precedidas de uma pasta que identifique o projeto.
    - Modelo: `src/pasta_principal/identificador/prefixo_arquivo.extensão`
-   - Exemplo: `src/model/bck/bck_usuario.js`
+   - Exemplo: `src/model/bck/bck_usuario.ts`
    
 
 ## Padrões de Fluxo de Uso (GitHub)
