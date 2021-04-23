@@ -13,7 +13,7 @@ server.use(bodyParser.json())
 server.use(routes);
 server.use('/public', express.static(`${__dirname}/dist/frontend`));
 
-server.get('/home', async (req: any, res: any) => {
+server.get('/', async (req: any, res: any) => {
     res.sendFile(path.join(`${__dirname}/dist/frontend/index.html`))
 })
 
