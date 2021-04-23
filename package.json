@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "npm install && node --loader ts-node/esm src/server.ts",
+        "start": "npm install && node --experimental-modules --loader ts-node/esm src/server.ts",
         "build": "tsc",
         "dev": "npm install && ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
     },

@@ -12,5 +12,5 @@ server.use(bodyParser.json())
 server.use(routes);
 
 server.listen(3000, () => {
-    console.log('API ONLINE => http://arpdevs.com.br/api/\'project\'/\'class\'/\'endpoint\'')
+    console.log('API ONLINE => http://arpdevs.com.br/api/\'project\'/\'class\'/\'endpoint\' (With TypeScript)')
 });
