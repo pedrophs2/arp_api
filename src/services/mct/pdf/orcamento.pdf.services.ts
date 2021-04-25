@@ -4,7 +4,7 @@ import path from 'path'
 import moment from 'moment'
 
 var orcamento = path.join(__dirname, '../../../assets/html/orcamento-resumido.html')
-var filename = orcamento.replace('.html', '-print.pdf')
+var filename = orcamento.replace('.html', '.pdf').replace('\\html\\', '\\pdf\\')
 var orcamentoHtml = fs.readFileSync(orcamento, 'utf-8')
 
 const options: pdf.CreateOptions = {
@@ -60,7 +60,7 @@ class OrcamentoPDFServices {
         orcamentoHtml = orcamentoHtml.replace('{{orcamento_total}}', orcamento.orcamento_total)
         orcamentoHtml = orcamentoHtml.replace('{{orcamento_valor_final}}', orcamento.orcamento_valor_final)
 
-        pdf.create(orcamentoHtml, options).toFile(`${filename}`,(err: Error, pdf: pdf.FileInfo) => {
+        pdf.create(orcamentoHtml, options).toFile(`${filename.replace('orcamento-resumido', `${orcamento.orcamento_cliente.cliente_nome}`)}`,(err: Error, pdf: pdf.FileInfo) => {
             if(err) return res.status(500).json(err)
 
             fs.existsSync(pdf.filename)
