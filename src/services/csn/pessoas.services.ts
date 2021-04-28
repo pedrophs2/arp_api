@@ -21,7 +21,7 @@ class PessoasServices {
     async createPessoa(pessoa: Pessoa) {
         try { 
             const conn = await db.connect()
-            const sql = 'CREATE CSN_PESSOA (PESSOA_NOME) VALUES (?)'
+            const sql = 'INSERT INTO CSN_PESSOA (PESSOA_NOME) VALUES (?)'
             const values = [pessoa.pessoa_nome]
 
             let data = await conn.query(sql, values)
