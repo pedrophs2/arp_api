@@ -1,28 +1,28 @@
 import db from '../../config/database'
-import { Item } from '../../models/csn/item.model'
+import { Pessoa } from '../../models/csn/pessoa.model'
 import handler from '../../utils/error-handler'
 
-class ItensServices {
+class PessoasServices {
 
-    async listPendentes() {
-        try{
+    async listPessoasSemEscolha() {
+        try {
             const conn = await db.connect()
-            let [data] = await conn.query('SELECT * FROM CSN_ITENS WHERE item_pessoa_id IS NULL', [])
-
+            let [data] = await conn.query('SELECT * FROM CSN_PESSOA WHERE PESSOA_ID NOT IN (SELECT ITEM_PESSOA_ID FROM CSN_ITENS WHERE ITEM_PESSOA_ID IS NOT NULL)')
+            
             if(data[0] != undefined)
                 return data
             else
                 return null
-        } catch(error) {
+        } catch (error) {
             return handler.handleErrorData(error)
         }
     }
 
-    async itemPicked(id_pessoa: number, id_item: number): Promise<boolean> {
-        try{
+    async createPessoa(pessoa: Pessoa) {
+        try { 
             const conn = await db.connect()
-            const sql = 'UPDATE CSN_ITENS SET item_pessoa_id = ? WHERE item_id = ?'
-            const values = [id_pessoa, id_item]
+            const sql = 'CREATE CSN_PESSOA (PESSOA_NOME) VALUES (?)'
+            const values = [pessoa.pessoa_nome]
 
             let data = await conn.query(sql, values)
 
@@ -34,6 +34,7 @@ class ItensServices {
             return handler.handleErrorBool(error)
         }
     }
+
 }
 
-export default new ItensServices()
+export default new PessoasServices()

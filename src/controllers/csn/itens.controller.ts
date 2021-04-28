@@ -11,6 +11,7 @@ class ItensController {
             else
                 res.status(401).send({message: 'Não foram encontrados mais itens disponíveis'})
         } catch(error) {
+            console.log(error)
             res.status(500).send({message: 'Erro no processo de requisição' + error})
         }
     }
@@ -24,6 +25,7 @@ class ItensController {
             else
                 res.status(400).send('Erro na seleção do item')
         } catch(error) {
+            console.log(error)
             res.status(500).send({message: 'Erro no processo de requisição'+ error})
         }
     }
