@@ -15,9 +15,14 @@ server.use(bodyParser.json())
 //API Routes
 server.use(routes);
 server.use('/public', express.static(`${__dirname}/dist/frontend`));
+server.use('/csn/public', express.static(`${__dirname}/dist/casa-nova`));
 
-server.get('/', async (req: any, res: any) => {
+server.get('/mct/admin', async (req: any, res: any) => {
     res.sendFile(path.join(`${__dirname}/dist/frontend/index.html`))
+})
+
+server.get('/casanova', async (req: any, res: any) => {
+    res.sendFile(path.join(`${__dirname}/dist/casa-nova/index.html`))
 })
 
 server.listen(3000, () => {
