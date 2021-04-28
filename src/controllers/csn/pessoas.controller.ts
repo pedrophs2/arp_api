@@ -19,6 +19,7 @@ class PessoasController {
 
     async createPessoa(req: any, res: any) {
         let pessoa: Pessoa = req.body
+        console.log(pessoa)
 
         try{ 
             let response = await PessoasServices.createPessoa(pessoa)
