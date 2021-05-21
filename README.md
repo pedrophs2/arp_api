@@ -32,3 +32,21 @@ Devem ser precedidas de uma pasta que identifique o projeto.
 
 #### Vídeo de Apoio: GitHub Desktop
  - https://youtu.be/KzVWLm12Y_s
+
+
+#### Fluxo de Funcionamento da API
+
+A API funciona seguindo um fluxo padrão para criação de requisições HTTP usando as ações básicas:
+
+ - GET  (Requisições que somente retornam dados. Exemplo: Listagem de usuários, visualização de usuário, visualização de itens de lista, etc...)
+ - POST (Requisições que criam novos dados no BD. Exemplo: Cadastro de usuários, cadastro de formas de pagamento, agendamento de tarefas, etc...)
+ - PUT  (Requisições que atualizam dados contidos no BD. Exemplo: Atualizar usuário, corrigir forma de pagamento, alterar horário de agendamento, etc...)
+ - DELETE (Requisições que apagam dados do BD. Exemplo: Nem precisa né ?)
+
+Para encontrar o fluxo de trabalho da API até chegar a lógica de fato siga esse caminho:
+
+`server.ts -> routes/index.ts -> routes/projeto/sigla_do_projeto.ts -> controllers/projeto/model.controller.ts -> services/projeto/model.services.ts`
+
+Exemplo na API (Projeto: Mercado do Construtor (MCT))
+
+`server.ts -> routes/index.ts -> routes/mct/mct.ts -> controllers/mct/cliente.controller.ts -> services/mct/cliente.services.ts`
