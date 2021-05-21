@@ -2,7 +2,7 @@
 
 - Para executar a aplicação em modo de desenvolvimento basta rodar o comando: `npm run dev`. Esse comando irá:
    - Executar o `npm install` e instalar todas as dependências necessárias
-   - Executar o projeto com o `nodemon` possibilitando que as alterações na API sejam reconhecidas em tempo real, e o projeto recarregado.
+   - Executar o projeto com o `ts-node-dev` possibilitando que as alterações na API sejam reconhecidas em tempo real, e o projeto recarregado.
 
 ## Documentação de EndPoints API: _Swagger_
 #### Em Breve
@@ -12,40 +12,23 @@
 
 Para manter uma organização nos arquivos da API e para que um integrante não modifique o trabalho do outro seguiremos as seguintes regras:
 
-- Arquivos e Classes: 
-Arquivos e Classes devem ter como prefixo o nome do sistema que pertencem. Essa regra deve ser seguida pois vamos usar uma API e Banco de Dados para todos os testes, caso coloquemos todos iguais, será difícil separar os projetos e eventualmente teremos problema de códigos se sobrescrevendo entre projetos.
-
-   - Modelo: `prefixo_arquivo.extensão` 
-   - Exemplo: `bck_usuario.ts`
-
 - Pastas principais (Model, Controller, Routes, Middleware...): 
 Devem ser precedidas de uma pasta que identifique o projeto.
-   - Modelo: `src/pasta_principal/identificador/prefixo_arquivo.extensão`
-   - Exemplo: `src/model/bck/bck_usuario.ts`
+   - Modelo: `src/tipo_arquivo/identificador_projeto/arquivo.tipo.extensão`
+   - Exemplo: `src/model/bck/usuario.model.ts` ou `src/controllers/bck/usuario.controller.ts`
    
 
 ## Padrões de Fluxo de Uso (GitHub)
 
 #### O Fluxo a seguir deve ser respeitado pois as alterações dependem disso para serem publicadas na Umbler.
 
- - Acesse a Umbler
- - Vá em `Arquivos/Pontos de Restauração`
- - Crie um novo ponto de restauração
- - Abra o GitHub Desktop ou qualquer outro de sua preferência e crie um branch
+ - Abra o GitHub Desktop ou qualquer outro de sua preferência e crie um branch dedicado a funcionalidade atual
+      Exemplo: `cadastro-usuario` ou `correcao-endereco`
+
  - Troque pra esse branch e desenvolva sua solução
- - Após a solução finalizada e testada, publique o branch no GitHub
+ - Após a solução finalizada e testada, publique o branch no GitHub e faça o push das alterações para o mesmo
  - Vá ao branch `master`, e faça o merge do seu branch no master
  - Caso a solução não contenha erros, o próprio Umbler irá compilar o projeto e subir a versão automaticamente
-
-#### Caso você tenha pulado alguma dessas etapas, ou mesmo que tenha seguido todas, ocorreu um erro na aplicação após o deploy siga esses passos:
-
- - Acesse a Umbler
- - Vá em `Arquivos/Pontos de Restauração`
- - Localize o ponto de restauração mais recente (que você deve ter criado antes de iniciar um branch)
- - Clique no segunto item (Restaurar)
- - Marque a opção _Deletar todos os arquivos_
- - Clique em restaurar
-    - Vídeo de apoio: https://youtu.be/kukz3Gi7swA
 
 #### Vídeo de Apoio: GitHub Desktop
  - https://youtu.be/KzVWLm12Y_s
