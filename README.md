@@ -5,7 +5,11 @@
    - Executar o projeto com o `ts-node-dev` possibilitando que as alterações na API sejam reconhecidas em tempo real, e o projeto recarregado.
 
 ## Documentação de EndPoints API: _Swagger_
-#### Em Breve
+Para alterações que já estão presentes na API online: 
+http://arpdevs.com.br/api-docs/
+
+Para alterações novas, presentes somente na sua máquina: 
+http://localhost:3000/api-docs
 
 ## Padrões de nomenclatura
 #### Todos os exemplos abaixo usarão como base o projeto: `Business-Cook`
