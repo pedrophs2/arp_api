@@ -31,11 +31,10 @@ Devem ser precedidas de uma pasta que identifique o projeto.
 
  - Troque pra esse branch e desenvolva sua solução
  - Após a solução finalizada e testada, publique o branch no GitHub e faça o push das alterações para o mesmo
- - Vá ao branch `master`, e faça o merge do seu branch no master
- - Caso a solução não contenha erros, o próprio Umbler irá compilar o projeto e subir a versão automaticamente
+ - Mande um Pull Request que eu (Pedro), faço o processo de publicação de alterações em produção
 
 #### Vídeo de Apoio: GitHub Desktop
- - https://youtu.be/KzVWLm12Y_s
+Em breve...
 
 
 ## Fluxo de Funcionamento da API
