@@ -34,7 +34,7 @@ Devem ser precedidas de uma pasta que identifique o projeto.
  - https://youtu.be/KzVWLm12Y_s
 
 
-#### Fluxo de Funcionamento da API
+## Fluxo de Funcionamento da API
 
 A API funciona seguindo um fluxo padrão para criação de requisições HTTP usando as ações básicas:
 
@@ -45,8 +45,26 @@ A API funciona seguindo um fluxo padrão para criação de requisições HTTP us
 
 Para encontrar o fluxo de trabalho da API até chegar a lógica de fato siga esse caminho:
 
-`server.ts -> routes/index.ts -> routes/projeto/sigla_do_projeto.ts -> controllers/projeto/model.controller.ts -> services/projeto/model.services.ts`
+`server.ts -> routes/index.ts -> routes/projeto/sigla_projeto.ts -> controllers/projeto/model.controller.ts -> services/projeto/model.services.ts`
 
 Exemplo na API (Projeto: Mercado do Construtor (MCT))
 
 `server.ts -> routes/index.ts -> routes/mct/mct.ts -> controllers/mct/cliente.controller.ts -> services/mct/cliente.services.ts`
+
+O que cada arquivo faz ?
+
+### server.ts
+O `server.ts` inicializa todas as rotas externas do projeto e abre uma porta específica para requisição, além de especificar os tipos de retorno da API.
+
+### routes/index.ts
+O arquivo `index.ts` da pasta routes inicializa as rotas de todos os projetos contidos nessa API, logo, sempre que um projeto for iniciado, crie uma pasta com a sigla do projeto (com até 3 letras) e aponte as rotas do mesmo nesse arquivo, seguindo o mesmo padrão atual.
+
+### routes/projeto/sigla_projeto.ts
+Esse arquivo contém de fato as rotas que fazem as requisições para o Banco de Dados e chamam as classes que fazem a regra de negócio funcionarem
+
+### controllers/projeto/model.controller.ts
+Todos os controllers tem a função de basicamente receber uma requisição, chamar a classe que contém a lógica, pegar essa resposta e converter pra uma resposta HTTP
+
+### services/projeto/model.controller.ts
+As classes services são onde de fato as requisições acontecem, seja uma simples conversão de dados, a uma chamada ao banco de dados, tudo é feito na classe services, isso impede que misturemos muito da lógica no tratamento de respostas da API
+
