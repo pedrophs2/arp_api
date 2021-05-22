@@ -5,25 +5,10 @@ import routes from './routes';
 import path from 'path'
 import swaggerJsDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+import { swaggerOptions } from './config/swagger.options'
 
-//Swagger Configuration - Extended: https://swagger.io/specification/#infoObject
-const swaggerOptions = {
-    swaggerDefinition: {
-        info: {
-            title: 'ArpAPI',
-            description: 'API de testes para projetos da ArpDevs',
-            contact: {
-                name: 'ArpDevs'
-            },
-            servers: ['http://localhost:3000/', 'http://arpdevs.com.br/'],
-            version: '1.0.0'
-        }
-    },
-    apis: ['**/*.ts']
-}
-
+//Swagger Config
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
-
 
 //Server Startup
 const server = express();
@@ -41,14 +26,17 @@ server.use('/csn/public', express.static(`${__dirname}/hosted_apps/casa-nova`));
 //Swagger Route
 server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
+//Mercado Construtor (Admin)
 server.get('/mct/admin', async (req: any, res: any) => {
     res.sendFile(path.join(`${__dirname}/hosted_apps/mercado-adm/index.html`))
 })
 
+//CasaNova
 server.get('/casanova', async (req: any, res: any) => {
     res.sendFile(path.join(`${__dirname}/hosted_apps/casa-nova/index.html`))
 })
 
+//API Startup (PORT: 3000)
 server.listen(3000, () => {
     console.log('API ONLINE => http://arpdevs.com.br/api/\'project\'/\'class\'/\'endpoint\'')
 });
