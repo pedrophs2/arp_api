@@ -2,7 +2,7 @@ import { Global } from '../global/global'
 
 class mysqldb {
     async connect() {
-        if(Global.connection != undefined && Global.connection.state !== 'disconnected')
+        if(Global.connection && Global.connection.state !== 'disconnected')
             Global.connection.end()
 
         const mysql = require('mysql2/promise')
@@ -10,6 +10,17 @@ class mysqldb {
 
         Global.connection = conn
         return conn
+    }
+
+    async disconnect() {
+        if(Global.connection != undefined && Global.connection.state !== 'disconnected')
+            Global.connection.end()
+
+        Global.connection == null
+    }
+
+    async getConnection() {
+        return Global.connection
     }
 }
 

@@ -29,6 +29,8 @@ class AuthServices {
         }catch(error) {
             console.log(error)
             return {signed: false, token: null, usuario: null}
+        } finally {
+            db.disconnect()
         }
     }
 
@@ -45,6 +47,8 @@ class AuthServices {
             return true
         }catch(error) {
             return false
+        } finally {
+            db.disconnect()
         }
     }
 

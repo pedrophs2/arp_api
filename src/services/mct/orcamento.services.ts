@@ -19,6 +19,8 @@ class OrcamentoServices {
         } catch (error) {
             console.log(error)
             return null
+        } finally {
+            db.disconnect()
         }
     }
 
@@ -36,6 +38,8 @@ class OrcamentoServices {
         } catch (error) {
             console.log(error)
             return null
+        } finally {
+            db.disconnect()
         }
     }
 
@@ -63,6 +67,8 @@ class OrcamentoServices {
         } catch(error) {
             console.log(error)
             return false
+        } finally {
+            db.disconnect()
         }
     }
 
@@ -94,6 +100,8 @@ class OrcamentoServices {
         } catch(error) {
             console.log(error)
             return false
+        } finally {
+            db.disconnect()
         }
     }
 
@@ -109,6 +117,8 @@ class OrcamentoServices {
         } catch(error) {
             console.log(error)
             return false
+        } finally {
+            db.disconnect()
         }
     }
 
