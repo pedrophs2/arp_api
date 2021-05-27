@@ -9,7 +9,7 @@ class OrcamentoServices {
     async listOrcamentos(usuario_id: number) {
         try{
             const conn = await db.connect()
-            let [data] = await conn.query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id_usuario = ?', [usuario_id])
+            let [data]: any = await conn.promise().query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id_usuario = ?', [usuario_id])
 
             if(data[0] != undefined)
                 return data
@@ -28,7 +28,7 @@ class OrcamentoServices {
 
         try{
             const conn = await db.connect()
-            let [data] = await conn.query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id = ? AND orcamento_id_usuario = ?', [orcamento_id, usuario_id])
+            let [data]: any = await conn.promise().query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id = ? AND orcamento_id_usuario = ?', [orcamento_id, usuario_id])
 
             if(data[0] != undefined)
                 return data[0]
@@ -58,7 +58,7 @@ class OrcamentoServices {
                 orcamento.orcamento_alimentacao, orcamento.orcamento_desconto,orcamento.orcamento_acrescimo, orcamento.orcamento_imposto, orcamento.orcamento_lucro, orcamento.orcamento_valor_final
             ]
 
-            let data = await conn.query(query, values)
+            let data = await conn.promise().query(query, values)
 
             if(data != null)
                 return true
@@ -90,7 +90,7 @@ class OrcamentoServices {
                 orcamento.orcamento_valor_final, orcamento_id
             ]
 
-            let data = await conn.query(query, values)
+            let data = await conn.promise().query(query, values)
 
             if(data != null)
                 return true
@@ -108,7 +108,7 @@ class OrcamentoServices {
     async deleteOrcamento(orcamento_id: number) {
         try {
             const conn = await db.connect()
-            let data = await conn.query('DELETE FROM MCT_ORCAMENTO WHERE orcamento_id = ?', [orcamento_id])
+            let data = await conn.promise().query('DELETE FROM MCT_ORCAMENTO WHERE orcamento_id = ?', [orcamento_id])
 
             if(data != undefined)
                 return true

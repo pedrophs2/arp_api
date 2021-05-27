@@ -6,7 +6,7 @@ class PorcelanatoServices {
     async listPorcelanatos(): Promise<any[]> {
         try { 
             const conn = await db.connect()
-            let [data] = await conn.query('SELECT * FROM MCT_PORCELANATO')
+            let [data]: any = await conn.promise().query('SELECT * FROM MCT_PORCELANATO')
 
             if(data[0] != undefined)
                 return data
@@ -24,7 +24,7 @@ class PorcelanatoServices {
     async getPorcelanato(porcelanato_id: number): Promise<Porcelanato>{
         try { 
             const conn = await db.connect()
-            let [data] = await conn.query('SELECT * FROM MCT_PORCELANATO WHERE porcelanato_id = ?', [porcelanato_id])
+            let [data]: any = await conn.promise().query('SELECT * FROM MCT_PORCELANATO WHERE porcelanato_id = ?', [porcelanato_id])
 
             if(data[0] != undefined)
                 return data[0]
@@ -45,7 +45,7 @@ class PorcelanatoServices {
             const sql = 'INSERT INTO MCT_PORCELANATO (porcelanato_nome, porcelanato_descricao, porcelanato_valor, porcelanato_imagem) VALUES (?, ?, ?, ?)'
             const values = [porcelanato.porcelanato_nome, porcelanato.porcelanato_descricao, porcelanato.porcelanato_valor, porcelanato.porcelanato_imagem]
 
-            let data = await conn.query(sql, values)
+            let data = await conn.promise().query(sql, values)
 
             if(data != null)
                 return true
@@ -65,7 +65,7 @@ class PorcelanatoServices {
             const sql = 'UPDATE MCT_PORCELANATO SET porcelanato_nome = ?, porcelanato_descricao = ?, porcelanato_valor = ?, porcelanato_imagem = ? WHERE porcelanato_id = ?'
             const values = [porcelanato.porcelanato_nome, porcelanato.porcelanato_descricao, porcelanato.porcelanato_valor, porcelanato.porcelanato_imagem, porcelanato_id]
 
-            let data = await conn.query(sql, values)
+            let data = await conn.promise().query(sql, values)
 
             if(data != null)
                 return true

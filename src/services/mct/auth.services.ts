@@ -11,7 +11,7 @@ class AuthServices {
 
         try{
             const conn = await db.connect()
-            let [resp] = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [user.usuario_email])
+            let [resp]: any = await conn.promise().query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [user.usuario_email])
             let data = resp[0]
 
             if(data != undefined){
@@ -37,7 +37,7 @@ class AuthServices {
     async forgot(usuario_email: string) {
         try {
             const conn = await db.connect()
-            let [resp] = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [usuario_email])
+            let [resp]: any = await conn.promise().query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [usuario_email])
             let data = resp[0]
 
             if(data == undefined)
