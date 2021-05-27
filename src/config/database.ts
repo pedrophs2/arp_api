@@ -13,7 +13,7 @@ class mysqldb {
     //     return conn
     // }
 
-    connection: any;
+    connection: mysql.Pool;
 
     async connect() {
         const pool = await mysql.createPool({
@@ -34,7 +34,7 @@ class mysqldb {
 
     async disconnect() {
         this.connection.getConnection((err: any, conn: any) => {
-            this.connection.releaseConnection(conn)
+            conn.release()
         })
     }
 
