@@ -13,6 +13,8 @@ class mysqldb {
     //     return conn
     // }
 
+    connection: any;
+
     async connect() {
         const pool = await mysql.createPool({
             host: 'mysql742.umbler.com',
@@ -25,11 +27,15 @@ class mysqldb {
             queueLimit: 0
         })
 
-        return pool
+        this.connection = pool
+
+        return this.connection
     }
 
     async disconnect() {
-        return;
+        this.connection.getConnection((err: any, conn: any) => {
+            this.connection.releaseConnection(conn)
+        })
     }
 
     async getConnection() {

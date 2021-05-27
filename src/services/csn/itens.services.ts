@@ -15,6 +15,8 @@ class ItensServices {
                 return null
         } catch(error) {
             return handler.handleErrorData(error)
+        } finally {
+            db.disconnect()
         }
     }
 
@@ -32,6 +34,8 @@ class ItensServices {
                 return false
         } catch(error) {
             return handler.handleErrorBool(error)
+        } finally {
+            db.disconnect()
         }
     }
 }
