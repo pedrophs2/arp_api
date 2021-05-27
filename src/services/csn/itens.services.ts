@@ -7,7 +7,7 @@ class ItensServices {
     async listPendentes() {
         try{
             const conn = await db.connect()
-            let [data] = await conn.query('SELECT * FROM CSN_ITENS WHERE item_pessoa_id IS NULL', [])
+            let [data]: any = await conn.promise().query('SELECT * FROM CSN_ITENS WHERE item_pessoa_id IS NULL', [])
 
             if(data[0] != undefined)
                 return data
@@ -24,7 +24,7 @@ class ItensServices {
             const sql = 'UPDATE CSN_ITENS SET item_pessoa_id = ? WHERE item_id = ?'
             const values = [id_pessoa, id_item]
 
-            let data = await conn.query(sql, values)
+            let data = await conn.promise().query(sql, values)
 
             if(data != null)
                 return true
