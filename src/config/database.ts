@@ -33,8 +33,9 @@ class mysqldb {
     }
 
     async disconnect() {
-        this.connection.getConnection((err: any, conn: any) => {
-            conn.release()
+        this.connection.getConnection((err, conn) => {
+            if(conn)
+                conn.release()
         })
     }
 
