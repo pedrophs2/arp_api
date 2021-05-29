@@ -6,8 +6,8 @@ class PessoasServices {
 
     async listPessoasSemEscolha() {
         try {
-            const conn = await db.connect()
-            let [data]: any = await conn.promise().query('SELECT * FROM CSN_PESSOA WHERE pessoa_id NOT IN (SELECT item_pessoa_id FROM CSN_ITENS WHERE item_pessoa_id IS NOT NULL)')
+            const conn = await db.getConnection()
+            let [data]: any = await conn.query('SELECT * FROM CSN_PESSOA WHERE pessoa_id NOT IN (SELECT item_pessoa_id FROM CSN_ITENS WHERE item_pessoa_id IS NOT NULL)')
 
             if (data[0] != undefined)
                 return data
@@ -15,18 +15,16 @@ class PessoasServices {
                 return null
         } catch (error) {
             return handler.handleErrorData(error)
-        } finally {
-            db.disconnect()
         }
     }
 
     async createPessoa(pessoa: Pessoa) {
         try {
-            const conn = await db.connect()
+            const conn = await db.getConnection()
             const sql = 'INSERT INTO CSN_PESSOA (pessoa_nome) VALUES (?)'
             const values = [pessoa.pessoa_nome]
 
-            let data = await conn.promise().query(sql, values)
+            let data = await conn.query(sql, values)
 
             if (data != null)
                 return true
@@ -34,8 +32,6 @@ class PessoasServices {
                 return false
         } catch (error) {
             return handler.handleErrorBool(error)
-        } finally {
-            db.disconnect()
         }
     }
 

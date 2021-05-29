@@ -10,8 +10,8 @@ class AuthServices {
         const expire = 864000
 
         try{
-            const conn = await db.connect()
-            let [resp]: any = await conn.promise().query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [user.usuario_email])
+            const conn = await db.getConnection()
+            let [resp]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [user.usuario_email])
             let data = resp[0]
 
             if(data != undefined){
@@ -29,15 +29,13 @@ class AuthServices {
         }catch(error) {
             console.log(error)
             return {signed: false, token: null, usuario: null}
-        } finally {
-            db.disconnect()
         }
     }
 
     async forgot(usuario_email: string) {
         try {
-            const conn = await db.connect()
-            let [resp]: any = await conn.promise().query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [usuario_email])
+            const conn = await db.getConnection()
+            let [resp]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [usuario_email])
             let data = resp[0]
 
             if(data == undefined)
@@ -47,8 +45,6 @@ class AuthServices {
             return true
         }catch(error) {
             return false
-        } finally {
-            db.disconnect()
         }
     }
 

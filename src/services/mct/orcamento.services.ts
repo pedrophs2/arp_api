@@ -8,8 +8,8 @@ class OrcamentoServices {
 
     async listOrcamentos(usuario_id: number) {
         try{
-            const conn = await db.connect()
-            let [data]: any = await conn.promise().query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id_usuario = ?', [usuario_id])
+            const conn = await db.getConnection()
+            let [data]: any = await conn.query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id_usuario = ?', [usuario_id])
 
             if(data[0] != undefined)
                 return data
@@ -19,16 +19,14 @@ class OrcamentoServices {
         } catch (error) {
             console.log(error)
             return null
-        } finally {
-            db.disconnect()
         }
     }
 
     async getOrcamentoById(orcamento_id: number, usuario_id: number) {
 
         try{
-            const conn = await db.connect()
-            let [data]: any = await conn.promise().query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id = ? AND orcamento_id_usuario = ?', [orcamento_id, usuario_id])
+            const conn = await db.getConnection()
+            let [data]: any = await conn.query('SELECT * FROM MCT_ORCAMENTO WHERE orcamento_id = ? AND orcamento_id_usuario = ?', [orcamento_id, usuario_id])
 
             if(data[0] != undefined)
                 return data[0]
@@ -38,14 +36,12 @@ class OrcamentoServices {
         } catch (error) {
             console.log(error)
             return null
-        } finally {
-            db.disconnect()
         }
     }
 
     async createOrcamento(orcamento: Orcamento) {
         try {
-            const conn = await db.connect()
+            const conn = await db.getConnection()
             const query = `INSERT INTO MCT_ORCAMENTO (${qb.buildParams(orcamentoColumns)}) VALUES (${qb.buildParamsSlot(35)})`
             const values = [
                 orcamento.orcamento_id_cliente, orcamento.orcamento_id_usuario, orcamento.orcamento_nome, orcamento.orcamento_total,
@@ -58,7 +54,7 @@ class OrcamentoServices {
                 orcamento.orcamento_alimentacao, orcamento.orcamento_desconto,orcamento.orcamento_acrescimo, orcamento.orcamento_imposto, orcamento.orcamento_lucro, orcamento.orcamento_valor_final
             ]
 
-            let data = await conn.promise().query(query, values)
+            let data = await conn.query(query, values)
 
             if(data != null)
                 return true
@@ -67,14 +63,12 @@ class OrcamentoServices {
         } catch(error) {
             console.log(error)
             return false
-        } finally {
-            db.disconnect()
         }
     }
 
     async updateOrcamento(orcamento: Orcamento, orcamento_id: number) {
         try{
-            const conn = await db.connect()
+            const conn = await db.getConnection()
             const query = ` UPDATE MCT_ORCAMENTO SET
                             ${qb.buildParams(orcamentoUpdateColumns)}
                             WHERE orcamento_id = ?`
@@ -90,7 +84,7 @@ class OrcamentoServices {
                 orcamento.orcamento_valor_final, orcamento_id
             ]
 
-            let data = await conn.promise().query(query, values)
+            let data = await conn.query(query, values)
 
             if(data != null)
                 return true
@@ -100,15 +94,13 @@ class OrcamentoServices {
         } catch(error) {
             console.log(error)
             return false
-        } finally {
-            db.disconnect()
         }
     }
 
     async deleteOrcamento(orcamento_id: number) {
         try {
-            const conn = await db.connect()
-            let data = await conn.promise().query('DELETE FROM MCT_ORCAMENTO WHERE orcamento_id = ?', [orcamento_id])
+            const conn = await db.getConnection()
+            let data = await conn.query('DELETE FROM MCT_ORCAMENTO WHERE orcamento_id = ?', [orcamento_id])
 
             if(data != undefined)
                 return true
@@ -117,8 +109,6 @@ class OrcamentoServices {
         } catch(error) {
             console.log(error)
             return false
-        } finally {
-            db.disconnect()
         }
     }
 
