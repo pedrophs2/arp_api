@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import mctRoutes from './mct.routes'
-// import bckRoutes from './bck.routes'
 import csnRoutes from './csn.routes'
 
 const routes = Router();

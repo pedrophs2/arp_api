@@ -1,8 +1,7 @@
 import { PorcelanatoOrcamento } from './../../models/mct/porcelanato-orcamento';
 import db from '../../config/database'
-import { Porcelanato } from '../../models/mct/porcelanato.model'
 
-export class PorcelanatoOrcamentoServices {
+class PorcelanatoOrcamentoServices {
 
     async createPorcelanatoOrcamento(porcelanatoOrcamento: PorcelanatoOrcamento): Promise<boolean> {
         const conn = await db.getConnection()
@@ -23,4 +22,25 @@ export class PorcelanatoOrcamentoServices {
         }
     }
 
+    async getPorcelanatosByOrcamento(orcamento_id: number): Promise<PorcelanatoOrcamento[]> {
+        const conn = await db.getConnection()
+
+        try {
+            const sql = `SELECT * MCT_ORCAMENTO_PORCELANATO WHERE ORCAMENTO_ID = ?`
+            const values = [orcamento_id]
+
+            const data = conn.query(sql, values)
+            
+            if(data[0])
+                return data
+            else
+                return []
+        } catch(error) {
+            console.log(error)
+            return null
+        }
+    }
+
 }
+
+export default new PorcelanatoOrcamentoServices()
