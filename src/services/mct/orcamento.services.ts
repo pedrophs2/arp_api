@@ -1,4 +1,4 @@
-import { PorcelanatoOrcamentoServices } from './porcelanato-orcamento.services';
+import PorcelanatoOrcamentoServices from './porcelanato-orcamento.services';
 import db from '../../config/database'
 import qb from '../../utils/query-builder'
 import { orcamentoColumns } from '../../utils/fields/orcamento.fields'
@@ -120,10 +120,9 @@ class OrcamentoServices {
 
     private async savePorcelanatoOrcamento(orcamento: Orcamento) {
         if(orcamento.orcamento_porcelanatos){
-            let _pos = new PorcelanatoOrcamentoServices()
                 orcamento.orcamento_porcelanatos.forEach(porcelanato => {
                     porcelanato.orcamento_id = orcamento.orcamento_id
-                    _pos.createPorcelanatoOrcamento(porcelanato)
+                    PorcelanatoOrcamentoServices.createPorcelanatoOrcamento(porcelanato)
                 })
         }
     }
