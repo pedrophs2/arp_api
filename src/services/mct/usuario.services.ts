@@ -66,13 +66,13 @@ class UsuarioServices {
             let data = await conn.query(sql, values)
 
             if(data != null)
-                return true
+                return data[0].insertId
             else
-                return false
+                return 0
 
         }catch (error) {
             console.log(error)
-            return false
+            return -1
         }
     }
 

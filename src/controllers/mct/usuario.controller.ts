@@ -37,8 +37,8 @@ class UsuarioController {
             let user = req.body
             let response = await UsuarioServices.createUser(user)
 
-            if(response)
-                res.status(201).send('Usuário inserido com sucesso')
+            if(response > 0)
+                res.status(201).send({message: 'Usuário inserido com sucesso', id: response})
             else
                 res.status(500).send({message: 'Erro na inserção de usuário', error: null})
 

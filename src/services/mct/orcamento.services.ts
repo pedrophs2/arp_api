@@ -1,3 +1,4 @@
+import { PorcelanatoOrcamentoServices } from './porcelanato-orcamento.services';
 import db from '../../config/database'
 import qb from '../../utils/query-builder'
 import { orcamentoColumns } from '../../utils/fields/orcamento.fields'
@@ -56,10 +57,13 @@ class OrcamentoServices {
 
             let data = await conn.query(query, values)
 
-            if(data != null)
+            if(data != null){             
+                orcamento.orcamento_id = data[0].insertId
+                this.savePorcelanatoOrcamento(orcamento)
                 return true
-            else
+            }else{
                 return false
+            }
         } catch(error) {
             console.log(error)
             return false
@@ -86,10 +90,12 @@ class OrcamentoServices {
 
             let data = await conn.query(query, values)
 
-            if(data != null)
+            if(data != null){
+                this.savePorcelanatoOrcamento(orcamento)
                 return true
-            else
+            }else{
                 return false
+            }
 
         } catch(error) {
             console.log(error)
@@ -109,6 +115,16 @@ class OrcamentoServices {
         } catch(error) {
             console.log(error)
             return false
+        }
+    }
+
+    private async savePorcelanatoOrcamento(orcamento: Orcamento) {
+        if(orcamento.orcamento_porcelanatos){
+            let _pos = new PorcelanatoOrcamentoServices()
+                orcamento.orcamento_porcelanatos.forEach(porcelanato => {
+                    porcelanato.orcamento_id = orcamento.orcamento_id
+                    _pos.createPorcelanatoOrcamento(porcelanato)
+                })
         }
     }
 
