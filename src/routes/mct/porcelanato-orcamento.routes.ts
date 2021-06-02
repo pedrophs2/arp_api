@@ -5,6 +5,6 @@ import PorcelanatoOrcamentoController from '../../controllers/mct/porcelanato-or
 const porcelanatoOrcamentoRouter = Router();
 
 porcelanatoOrcamentoRouter.post('/', JwtChecker.verifyJwt, PorcelanatoOrcamentoController.createPorcelanatoOrcamento)
-porcelanatoOrcamentoRouter.get('/:porcelanato_id', JwtChecker.verifyJwt, PorcelanatoOrcamentoController.getPorcelanatosByOrcamento)
+porcelanatoOrcamentoRouter.get('/:orcamento_id', JwtChecker.verifyJwt, PorcelanatoOrcamentoController.getPorcelanatosByOrcamento)
 
 export default porcelanatoOrcamentoRouter

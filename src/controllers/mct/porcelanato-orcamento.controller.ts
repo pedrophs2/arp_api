@@ -18,7 +18,7 @@ class PorcelanatoOrcamentoController {
 
     async getPorcelanatosByOrcamento(req: any, res: any) {
         try {
-            let response = await PorcelanatoOrcamentoServices.getPorcelanatosByOrcamento(req.params.id_orcamento)
+            let response = await PorcelanatoOrcamentoServices.getPorcelanatosByOrcamento(req.params.orcamento_id)
 
             if(response)
                 res.status(200).send(response)
