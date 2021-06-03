@@ -26,10 +26,10 @@ class PorcelanatoOrcamentoServices {
         const conn = await db.getConnection()
 
         try {
-            const sql = `SELECT * FROM MCT_ORCAMENTO_PORCELANATO WHERE ORCAMENTO_ID = ?`
+            const sql = `SELECT * FROM MCT_ORCAMENTO_PORCELANATO WHERE orcamento_id = ?`
             const values = [orcamento_id]
 
-            const data = conn.query(sql, values)
+            const [data] = await conn.query(sql, values)
             
             if(data[0])
                 return data
