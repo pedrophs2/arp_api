@@ -3,6 +3,6 @@ import usuarioRoutes from './iago/usuario.routes'
 
 const iagoRoutes = Router()
 
-iagoRoutes.use(usuarioRoutes)
+iagoRoutes.use('/usuario', usuarioRoutes)
 
 export default iagoRoutes
