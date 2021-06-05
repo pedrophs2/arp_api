@@ -2,16 +2,6 @@ import { Global } from '../global/global'
 import mysql from 'mysql2'
 
 class mysqldb {
-    // async connect() {
-    //     if(Global.connection && Global.connection.state !== 'disconnected')
-    //         Global.connection.end()
-
-    //     const mysql = require('mysql2/promise')
-    //     const conn = await  mysql.createConnection('mysql://arp-master:arpmaster2021@mysql742.umbler.com:41890/arp-api-msql')
-
-    //     Global.connection = conn
-    //     return conn
-    // }
 
     public async getConnection() {
         if(Global.connection)
