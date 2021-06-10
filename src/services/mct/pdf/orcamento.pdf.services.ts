@@ -17,6 +17,7 @@ class OrcamentoPDFServices {
 
     async generatePDFOrcamento(req: any, res: any) {
         let orcamento = req.body
+        console.log(orcamento)
 
         orcamentoHtml = orcamentoHtml.toString()
 
