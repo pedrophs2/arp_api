@@ -1,3 +1,4 @@
+import { Orcamento } from './../../../models/mct/orcamento.model';
 import fs from 'fs'
 import pdf from 'html-pdf'
 import path from 'path'
@@ -46,6 +47,7 @@ class OrcamentoPDFServices {
         let orcamento = req.body
 
         orcamentoHtml = orcamentoHtml.toString()
+        const fileName = this.mountFileName(orcamento)
 
         // Cliente
         orcamentoHtml = orcamentoHtml.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome)
@@ -67,6 +69,12 @@ class OrcamentoPDFServices {
             fs.existsSync(pdf.filename)
             res.end(pdf.filename)
         })
+    }
+
+    private mountFileName(attributes: Orcamento): string {
+        let date = new Date()
+        let fileName = `${attributes.orcamento_id}${date.getTime()}${attributes.orcamento_id_usuario}${attributes.orcamento_id_cliente}`
+        return fileName
     }
 
 }

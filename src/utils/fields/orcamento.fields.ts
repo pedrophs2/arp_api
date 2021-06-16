@@ -38,6 +38,7 @@ export const orcamentoColumns = [
 
 
 export const orcamentoUpdateColumns = [
+    'orcamento_id_cliente = ?',
     'orcamento_nome = ?',
     'orcamento_total = ?',
     'orcamento_data = ?',
@@ -72,5 +73,4 @@ export const orcamentoUpdateColumns = [
     'orcamento_imposto = ?',
     'orcamento_lucro = ?',
     'orcamento_valor_final = ?',
-    'orcamento_id_cliente = ?'
 ];

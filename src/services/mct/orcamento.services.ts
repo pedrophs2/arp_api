@@ -73,12 +73,12 @@ class OrcamentoServices {
     async updateOrcamento(orcamento: Orcamento, orcamento_id: number) {
         try{
             const conn = await db.getConnection()
-            const query = ` UPDATE MCT_ORCAMENTO SET
-                            ${qb.buildParams(orcamentoUpdateColumns)}
-                            WHERE orcamento_id = ?`
+            const query = `UPDATE MCT_ORCAMENTO SET ${qb.buildParams(orcamentoUpdateColumns)} WHERE orcamento_id = ?`
+
+            console.log(query)
 
             const values = [
-                orcamento.orcamento_nome, orcamento.orcamento_total, orcamento.orcamento_data, orcamento.orcamento_mo_interna,
+                orcamento.orcamento_id_cliente, orcamento.orcamento_nome, orcamento.orcamento_total, orcamento.orcamento_data, orcamento.orcamento_mo_interna,
                 orcamento.orcamento_mo_externa, orcamento.orcamento_disco, orcamento.orcamento_copo_cone_60, orcamento.orcamento_copo_cone_120,
                 orcamento.orcamento_copo_reto_60, orcamento.orcamento_copo_reto_120, orcamento.orcamento_diamantada_50, orcamento.orcamento_diamantada_100,
                 orcamento.orcamento_diamantada_200, orcamento.orcamento_velcro_220, orcamento.orcamento_velcro_320, orcamento.orcamento_velcro_400, orcamento.orcamento_velcro_600,
