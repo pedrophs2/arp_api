@@ -49,6 +49,7 @@ class OrcamentoPDFServices {
 
         orcamentoHtml = orcamentoHtml.toString()
         const fileName = this.mountFileName(orcamento)
+        console.log(fileName)
 
         // Cliente
         orcamentoHtml = orcamentoHtml.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome)
@@ -64,7 +65,7 @@ class OrcamentoPDFServices {
         orcamentoHtml = orcamentoHtml.replace('{{orcamento_total}}', orcamento.orcamento_total)
         orcamentoHtml = orcamentoHtml.replace('{{orcamento_valor_final}}', orcamento.orcamento_valor_final)
 
-        pdf.create(orcamentoHtml, options).toFile(`${filename.replace('orcamento-resumido', `${orcamento.orcamento_cliente.cliente_nome}`)}`,(err: Error, pdf: pdf.FileInfo) => {
+        pdf.create(orcamentoHtml, options).toFile(`${filename.replace('orcamento-resumido', `${fileName}`)}`,(err: Error, pdf: pdf.FileInfo) => {
             if(err) return res.status(500).json(err)
 
             fs.existsSync(pdf.filename)
