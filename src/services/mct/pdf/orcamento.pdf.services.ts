@@ -45,6 +45,7 @@ class OrcamentoPDFServices {
 
     async generatePDFOrcamentoSimplificadoFile(req: any, res: any) {
         let orcamento = req.body
+        console.log(orcamento)
 
         orcamentoHtml = orcamentoHtml.toString()
         const fileName = this.mountFileName(orcamento)
