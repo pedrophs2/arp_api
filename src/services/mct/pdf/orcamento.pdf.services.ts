@@ -35,6 +35,8 @@ class OrcamentoPDFServices {
             orcamentoHtml = orcamentoHtml.replace('{{orcamento_total}}', orcamento.orcamento_total)
             orcamentoHtml = orcamentoHtml.replace('{{orcamento_valor_final}}', orcamento.orcamento_valor_final)
 
+            console.log(orcamentoHtml)
+
             pdf.create(orcamentoHtml, options).toBuffer((err: Error, buffer: Buffer) => {
                 if (err) return res.status(500).json(err)
 
@@ -43,47 +45,6 @@ class OrcamentoPDFServices {
         } catch (error) {
             console.log(error)
         }
-    }
-
-    async generatePDFOrcamentoSimplificadoFile(req: any, res: any) {
-        try {
-            let orcamento = req.body
-
-            orcamentoHtml = orcamentoHtml.toString()
-            let date = new Date()
-            let fn = `${orcamento.orcamento_id}${date.getTime()}${orcamento.orcamento_id_usuario}${orcamento.orcamento_id_cliente}`
-            const fileName = fn
-            console.log(fileName)
-
-            // Cliente
-            orcamentoHtml = orcamentoHtml.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome)
-            orcamentoHtml = orcamentoHtml.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome)
-            orcamentoHtml = orcamentoHtml.replace('{{cliente_endereco}}', orcamento.orcamento_cliente.cliente_endereco)
-            orcamentoHtml = orcamentoHtml.replace('{{cliente_fone}}', orcamento.orcamento_cliente.cliente_fone)
-
-            // Orcamento
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_id}}', orcamento.orcamento_id || 'Não salvo')
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_data}}', moment(orcamento.orcamento_data).format('DD/MM/YYYY'))
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_nome}}', orcamento.orcamento_nome)
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_total}}', orcamento.orcamento_total)
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_total}}', orcamento.orcamento_total)
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_valor_final}}', orcamento.orcamento_valor_final)
-
-            pdf.create(orcamentoHtml, options).toFile(`${filename.replace('orcamento-resumido', `${fileName}`)}`, (err: Error, pdf: pdf.FileInfo) => {
-                if (err) return res.status(500).json(err)
-
-                fs.existsSync(pdf.filename)
-                res.end(pdf.filename)
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    private mountFileName(attributes: Orcamento): string {
-        let date = new Date()
-        let fileName = `${attributes.orcamento_id}${date.getTime()}${attributes.orcamento_id_usuario}${attributes.orcamento_id_cliente}`
-        return fileName
     }
 
 }
