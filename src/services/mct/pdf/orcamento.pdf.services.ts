@@ -50,7 +50,9 @@ class OrcamentoPDFServices {
             let orcamento = req.body
 
             orcamentoHtml = orcamentoHtml.toString()
-            const fileName = this.mountFileName(orcamento)
+            let date = new Date()
+            let fn = `${orcamento.orcamento_id}${date.getTime()}${orcamento.orcamento_id_usuario}${orcamento.orcamento_id_cliente}`
+            const fileName = fn
             console.log(fileName)
 
             // Cliente
@@ -73,7 +75,7 @@ class OrcamentoPDFServices {
                 fs.existsSync(pdf.filename)
                 res.end(pdf.filename)
             })
-        } catch(error) {
+        } catch (error) {
             console.log(error)
         }
     }
