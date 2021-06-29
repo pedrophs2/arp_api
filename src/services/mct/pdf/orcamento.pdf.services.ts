@@ -19,25 +19,25 @@ class OrcamentoPDFServices {
     async generatePDFOrcamento(req: any, res: any) {
         try {
             let orcamento = req.body
-            orcamentoHtml = orcamentoHtml.toString()
+            let tmpString: string = orcamentoHtml.toString()
 
             // Cliente
-            orcamentoHtml = orcamentoHtml.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome)
-            orcamentoHtml = orcamentoHtml.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome)
-            orcamentoHtml = orcamentoHtml.replace('{{cliente_endereco}}', orcamento.orcamento_cliente.cliente_endereco)
-            orcamentoHtml = orcamentoHtml.replace('{{cliente_fone}}', orcamento.orcamento_cliente.cliente_fone)
+            tmpString = tmpString.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome)
+            tmpString = tmpString.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome)
+            tmpString = tmpString.replace('{{cliente_endereco}}', orcamento.orcamento_cliente.cliente_endereco)
+            tmpString = tmpString.replace('{{cliente_fone}}', orcamento.orcamento_cliente.cliente_fone)
 
             // Orcamento
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_id}}', orcamento.orcamento_id || 'Não salvo')
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_data}}', moment(orcamento.orcamento_data).format('DD/MM/YYYY'))
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_nome}}', orcamento.orcamento_nome)
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_total}}', orcamento.orcamento_total)
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_total}}', orcamento.orcamento_total)
-            orcamentoHtml = orcamentoHtml.replace('{{orcamento_valor_final}}', orcamento.orcamento_valor_final)
+            tmpString = tmpString.replace('{{orcamento_id}}', orcamento.orcamento_id || 'Não salvo')
+            tmpString = tmpString.replace('{{orcamento_data}}', moment(orcamento.orcamento_data).format('DD/MM/YYYY'))
+            tmpString = tmpString.replace('{{orcamento_nome}}', orcamento.orcamento_nome)
+            tmpString = tmpString.replace('{{orcamento_total}}', orcamento.orcamento_total)
+            tmpString = tmpString.replace('{{orcamento_total}}', orcamento.orcamento_total)
+            tmpString = tmpString.replace('{{orcamento_valor_final}}', orcamento.orcamento_valor_final)
 
             console.log(orcamentoHtml)
 
-            pdf.create(orcamentoHtml, options).toBuffer((err: Error, buffer: Buffer) => {
+            pdf.create(tmpString, options).toBuffer((err: Error, buffer: Buffer) => {
                 if (err) return res.status(500).json(err)
 
                 res.end(buffer)
