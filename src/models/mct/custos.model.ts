@@ -1,5 +1,6 @@
 export class Custos {
-    id: number
+    custos_id: number
+    custos_id_usuario: number
     custos_mo_interna: number
     custos_mo_externa: number
     custos_disco_unidade: number
@@ -51,6 +52,7 @@ export class Custos {
 
     constructor(
         id: number,
+        id_usuario: number,
         custos_mo_interna: number,
         custos_mo_externa: number,
         custos_disco_unidade: number,
@@ -101,6 +103,7 @@ export class Custos {
         custos_custo_fixo: number
     ) {
         this.id = id
+        this.id_usuario = id_usuario
         this.custos_mo_interna = custos_mo_interna
         this.custos_mo_externa = custos_mo_externa
         this.custos_disco_unidade = custos_disco_unidade
