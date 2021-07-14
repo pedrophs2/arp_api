@@ -19,6 +19,7 @@ class CustoController {
     public async setCusto(req: any, res: any) {
         let custos: Custos = <Custos> req.body
         custos.custos_id_usuario = req.params.usuario_id
+        console.log(custos)
 
         try {
             let response = await CustoServices.saveCusto(custos)
