@@ -39,7 +39,7 @@ class ClienteServices {
             const query = 'INSERT INTO MCT_CLIENTE (cliente_id_usuario, cliente_nome, cliente_fone, cliente_endereco) VALUES (?, ?, ?, ?)'
             const values = [cliente.cliente_id_usuario, cliente.cliente_nome, cliente.cliente_fone, cliente.cliente_endereco]
 
-            let data = await conn.promise().query(query, values)
+            let data = await conn.query(query, values)
 
             if(data != null)
                 return true
