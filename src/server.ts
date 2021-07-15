@@ -22,6 +22,7 @@ server.use(bodyParser.json())
 server.use(routes);
 server.use('/mct/public', express.static(`${__dirname}/hosted_apps/mercado-adm`));
 server.use('/csn/public', express.static(`${__dirname}/hosted_apps/casa-nova`));
+server.use('/assets/public', express.static(`${__dirname}/hosted_apps/arp-web`));
 
 //Swagger Route
 server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
@@ -34,6 +35,11 @@ server.get('/mct/admin', async (req: any, res: any) => {
 //CasaNova
 server.get('/casanova', async (req: any, res: any) => {
     res.sendFile(path.join(`${__dirname}/hosted_apps/casa-nova/index.html`))
+})
+
+//ArpWeb
+server.get('', async(req: any, res: any) => {
+    res.sendFile(path.join(`${__dirname}/hosted_apps/arp-web/index.html`))
 })
 
 //API Startup (PORT: 3000)

@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
 import mctRoutes from './mct.routes'
-// import bckRoutes from './bck.routes'
 import csnRoutes from './csn.routes'
+import iagoRoutes from './iago.routes'
 
 const routes = Router();
 
@@ -14,5 +14,8 @@ routes.use('/api/mct', mctRoutes);
 
 //CasaNova
 routes.use('/api/csn', csnRoutes)
+
+//IagoRoutes
+routes.use('/api/iago', iagoRoutes)
 
 export default routes;

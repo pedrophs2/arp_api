@@ -10,8 +10,8 @@ class AuthServices {
         const expire = 864000
 
         try{
-            const conn = await db.connect()
-            let [resp] = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [user.usuario_email])
+            const conn = await db.getConnection()
+            let [resp]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [user.usuario_email])
             let data = resp[0]
 
             if(data != undefined){
@@ -34,8 +34,8 @@ class AuthServices {
 
     async forgot(usuario_email: string) {
         try {
-            const conn = await db.connect()
-            let [resp] = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [usuario_email])
+            const conn = await db.getConnection()
+            let [resp]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [usuario_email])
             let data = resp[0]
 
             if(data == undefined)

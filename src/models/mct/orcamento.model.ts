@@ -1,3 +1,4 @@
+import { PorcelanatoOrcamento } from './porcelanato-orcamento';
 export class Orcamento {
     orcamento_id: number
     orcamento_id_usuario: number
@@ -36,6 +37,7 @@ export class Orcamento {
     orcamento_imposto: number
     orcamento_lucro: number
     orcamento_valor_final: number
+    orcamento_porcelanatos: PorcelanatoOrcamento[]
 
     constructor(
         orcamento_id: number,
@@ -74,7 +76,8 @@ export class Orcamento {
         orcamento_acrescimo: number,
         orcamento_imposto: number,
         orcamento_lucro: number,
-        orcamento_valor_final: number
+        orcamento_valor_final: number,
+        orcamento_porcelanatos: PorcelanatoOrcamento[]
     ) {
         this.orcamento_id = orcamento_id
         this.orcamento_id_usuario = orcamento_id_usuario
@@ -113,5 +116,6 @@ export class Orcamento {
         this.orcamento_imposto = orcamento_imposto
         this.orcamento_lucro = orcamento_lucro
         this.orcamento_valor_final = orcamento_valor_final
+        this.orcamento_porcelanatos = orcamento_porcelanatos
     }
 }

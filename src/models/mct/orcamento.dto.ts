@@ -1,3 +1,4 @@
+import { PorcelanatoOrcamento } from './porcelanato-orcamento';
 import { Usuario } from "./usuario.model"
 
 export class OrcamentoDTO {
@@ -39,6 +40,7 @@ export class OrcamentoDTO {
     orcamento_lucro: number
     orcamento_valor_final: number
     orcamento_usuario: Usuario
+    orcamento_porcelanatos: PorcelanatoOrcamento[]
 
     constructor(
         orcamento_id: number,
@@ -78,7 +80,8 @@ export class OrcamentoDTO {
         orcamento_imposto: number,
         orcamento_lucro: number,
         orcamento_valor_final: number,
-        orcamento_usuario: Usuario
+        orcamento_usuario: Usuario,
+        orcamento_porcelanatos ?: PorcelanatoOrcamento[]
     ) {
         this.orcamento_id = orcamento_id
         this.orcamento_id_usuario = orcamento_id_usuario
@@ -118,5 +121,6 @@ export class OrcamentoDTO {
         this.orcamento_lucro = orcamento_lucro
         this.orcamento_valor_final = orcamento_valor_final
         this.orcamento_usuario = orcamento_usuario
+        this.orcamento_porcelanatos = orcamento_porcelanatos
     }
 }
