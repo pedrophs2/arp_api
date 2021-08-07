@@ -8,6 +8,7 @@ import pdfRoutes from './mct/pdf.routes'
 import porcelanatoRoutes from './mct/porcelanato.routes'
 import porcelanatoOrcamentoRoutes from './mct/porcelanato-orcamento.routes'
 import custoRoutes from './mct/custos.routes'
+import dashboardRoutes from './mct/dashboard.routes'
 
 const mctRouter = Router();
 
@@ -19,5 +20,6 @@ mctRouter.use('/pdf', pdfRoutes)
 mctRouter.use('/porcelanato', porcelanatoRoutes)
 mctRouter.use('/porcelanato-orcamento', porcelanatoOrcamentoRoutes)
 mctRouter.use('/custos', custoRoutes)
+mctRouter.use('/dashboard', dashboardRoutes)
 
 export default mctRouter;
