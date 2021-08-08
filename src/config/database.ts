@@ -1,7 +1,8 @@
 import { Global } from '../global/global'
 import mysql from 'mysql2'
+import { Connection } from './interfaces/connection.interface'
 
-class mysqldb {
+class mysqldb implements Connection {
 
     public async getConnection() {
         if(Global.connection)
@@ -11,7 +12,7 @@ class mysqldb {
         return Global.connection
     }
 
-    private async connect() {
+    public async connect() {
         try {
             const pool = await mysql.createPool({
                 host: 'mysql742.umbler.com',
