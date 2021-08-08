@@ -35,10 +35,17 @@ class OrcamentoPDFServices {
             tmpString = tmpString.replace('{{nr_cnpj}}', empresa.nr_cnpj)
 
             // Cliente
-            tmpString = tmpString.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome || 'Não cadastrado')
-            tmpString = tmpString.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome || 'Não cadastrado')
-            tmpString = tmpString.replace('{{cliente_endereco}}', orcamento.orcamento_cliente.cliente_endereco || 'Não informado')
-            tmpString = tmpString.replace('{{cliente_fone}}', orcamento.orcamento_cliente.cliente_fone || 'Não informado')
+            if(orcamento.orcamento_cliente) {
+                tmpString = tmpString.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome )
+                tmpString = tmpString.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome )
+                tmpString = tmpString.replace('{{cliente_endereco}}', orcamento.orcamento_cliente.cliente_endereco )
+                tmpString = tmpString.replace('{{cliente_fone}}', orcamento.orcamento_cliente.cliente_fone )
+            } else {
+                tmpString = tmpString.replace('{{cliente_nome}}', 'Não cadastrado')
+                tmpString = tmpString.replace('{{cliente_nome}}', 'Não cadastrado')
+                tmpString = tmpString.replace('{{cliente_endereco}}', 'Não informado')
+                tmpString = tmpString.replace('{{cliente_fone}}', 'Não informado')
+            }
 
             // Orcamento
             tmpString = tmpString.replace('{{orcamento_id}}', orcamento.orcamento_id || 'Não salvo')
