@@ -25,14 +25,14 @@ class OrcamentoPDFServices {
 
             //Empresa
             const empresa: Empresa = await EmpresaServices.getEmpresaUsuario(orcamento.orcamento_id_usuario)
-            this.setData(tmpString, '{{ds_endereco}}', empresa.ds_endereco)
-            this.setData(tmpString, '{{ds_bairro}}', empresa.ds_bairro)
-            this.setData(tmpString, '{{nm_cidade}}', empresa.nm_cidade)
-            this.setData(tmpString, '{{sg_uf}}', empresa.sg_uf)
-            this.setData(tmpString, '{{nr_cep}}', empresa.ds_cep)
-            this.setData(tmpString, '{{nr_telefone}}', empresa.nr_telefone)
-            this.setData(tmpString, '{{nm_empresa}}', empresa.nm_empresa)
-            this.setData(tmpString, '{{nr_cnpj}}', empresa.nr_cnpj)
+            tmpString = tmpString.replace('{{ds_endereco}}', empresa.ds_endereco)
+            tmpString = tmpString.replace('{{ds_bairro}}', empresa.ds_bairro)
+            tmpString = tmpString.replace('{{nm_cidade}}', empresa.nm_cidade)
+            tmpString = tmpString.replace('{{sg_uf}}', empresa.sg_uf)
+            tmpString = tmpString.replace('{{nr_cep}}', empresa.ds_cep)
+            tmpString = tmpString.replace('{{nr_telefone}}', empresa.nr_telefone)
+            tmpString = tmpString.replace('{{nm_empresa}}', empresa.nm_empresa)
+            tmpString = tmpString.replace('{{nr_cnpj}}', empresa.nr_cnpj)
 
             // Cliente
             tmpString = tmpString.replace('{{cliente_nome}}', orcamento.orcamento_cliente.cliente_nome)
@@ -56,10 +56,6 @@ class OrcamentoPDFServices {
         } catch (error) {
             console.log(error)
         }
-    }
-
-    private setData(obj: any, field: string, data: string) {
-        obj = obj.replace(field, data)
     }
 
 }
