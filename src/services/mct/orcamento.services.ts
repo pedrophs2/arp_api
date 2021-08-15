@@ -117,6 +117,7 @@ class OrcamentoServices {
     }
 
     private async savePorcelanatoOrcamento(orcamento: Orcamento) {
+        PorcelanatoOrcamentoServices.clearPorcelanatosOrcamento(orcamento.orcamento_id)
         if(orcamento.orcamento_porcelanatos){
                 orcamento.orcamento_porcelanatos.forEach(porcelanato => {
                     porcelanato.orcamento_id = orcamento.orcamento_id

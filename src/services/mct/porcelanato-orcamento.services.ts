@@ -41,6 +41,23 @@ class PorcelanatoOrcamentoServices {
         }
     }
 
+    public async clearPorcelanatosOrcamento(orcamento_id: number): Promise<boolean> {
+        const conn = await db.getConnection();
+
+        try {
+            const sql = `DELETE FROM MCT_ORCAMENTO_PORCELANATO WHERE orcamento_id = ?`
+            const [data] = await conn.query(sql, [orcamento_id])
+
+            if(data[0])
+                return true
+            else
+                return false
+        } catch(error) {
+            console.error(error)
+            return null
+        }
+    }
+
 }
 
 export default new PorcelanatoOrcamentoServices()
