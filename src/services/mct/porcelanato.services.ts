@@ -38,7 +38,7 @@ class PorcelanatoServices {
     async createPorcelanato(porcelanato: Porcelanato): Promise<boolean> {
         try {
             const conn = await db.getConnection()
-            const sql = 'INSERT INTO MCT_PORCELANATO (porcelanato_nome, porcelanato_descricao, porcelanato_valor, porcelanato_imagem) VALUES (?, ?, ?, ?)'
+            const sql = 'INSERT INTO MCT_PORCELANATO (porcelanato_nome, porcelanato_descricao, porcelanato_valor, porcelanato_imagem) VALUES (?, ?, ?, BINARY(?))'
             const values = [porcelanato.porcelanato_nome, porcelanato.porcelanato_descricao, porcelanato.porcelanato_valor, porcelanato.porcelanato_imagem]
 
             let data = await conn.query(sql, values)
