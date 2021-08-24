@@ -1,6 +1,8 @@
+import ImageProvider from '../../third_party/images/image.provider'
 import db from '../../config/database'
 import { Cliente } from '../../models/mct/cliente.model'
 
+const IMAGE_PATH = 'mct/clientes'
 class ClienteServices {
 
     async listClientesByUsuario(usuario_id: number) {
@@ -35,9 +37,11 @@ class ClienteServices {
 
     async createCliente(cliente: Cliente) {
         try {
+            cliente.cliente_logo = await ImageProvider.upload(cliente.cliente_nome, cliente.cliente_logo, IMAGE_PATH)
+
             const conn = await db.getConnection()
-            const query = 'INSERT INTO MCT_CLIENTE (cliente_id_usuario, cliente_nome, cliente_fone, cliente_endereco) VALUES (?, ?, ?, ?)'
-            const values = [cliente.cliente_id_usuario, cliente.cliente_nome, cliente.cliente_fone, cliente.cliente_endereco]
+            const query = 'INSERT INTO MCT_CLIENTE (cliente_id_usuario, cliente_nome, cliente_fone, cliente_endereco, cliente_logo) VALUES (?, ?, ?, ?, ?)'
+            const values = [cliente.cliente_id_usuario, cliente.cliente_nome, cliente.cliente_fone, cliente.cliente_endereco, cliente.cliente_logo]
 
             let data = await conn.query(query, values)
 
@@ -53,9 +57,11 @@ class ClienteServices {
 
     async updateCliente(cliente: Cliente) {
         try {
+            cliente.cliente_logo = await ImageProvider.upload(cliente.cliente_nome, cliente.cliente_logo, IMAGE_PATH)
+
             const conn = await db.getConnection()
-            const query = 'UPDATE MCT_CLIENTE SET cliente_nome = ?, cliente_fone = ?, cliente_endereco = ? WHERE cliente_id = ?'
-            const values = [cliente.cliente_nome, cliente.cliente_fone, cliente.cliente_endereco, cliente.cliente_id]
+            const query = 'UPDATE MCT_CLIENTE SET cliente_nome = ?, cliente_fone = ?, cliente_endereco = ?, cliente_logo = ? WHERE cliente_id = ?'
+            const values = [cliente.cliente_nome, cliente.cliente_fone, cliente.cliente_endereco, cliente.cliente_logo, cliente.cliente_id]
 
             let data = await conn.query(query, values)
 
