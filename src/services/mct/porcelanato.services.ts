@@ -1,6 +1,8 @@
 import db from '../../config/database'
 import { Porcelanato } from '../../models/mct/porcelanato.model'
+import ImageProvider from '../../third_party/images/image.provider'
 
+const filePath = 'mct/porcelanatos'
 class PorcelanatoServices {
 
     async listPorcelanatos(): Promise<any[]> {
@@ -55,6 +57,8 @@ class PorcelanatoServices {
 
     async updatePorcelanato(porcelanato: Porcelanato, porcelanato_id: number): Promise<boolean> {
         try {
+
+            porcelanato.porcelanato_imagem = await ImageProvider.upload(porcelanato.porcelanato_nome, porcelanato.porcelanato_imagem, filePath)
             const conn = await db.getConnection()
             const sql = 'UPDATE MCT_PORCELANATO SET porcelanato_nome = ?, porcelanato_descricao = ?, porcelanato_valor = ?, porcelanato_imagem = ? WHERE porcelanato_id = ?'
             const values = [porcelanato.porcelanato_nome, porcelanato.porcelanato_descricao, porcelanato.porcelanato_valor, porcelanato.porcelanato_imagem, porcelanato_id]
