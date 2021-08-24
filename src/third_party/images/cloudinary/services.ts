@@ -9,7 +9,7 @@ class CloudinaryProvider implements ImageProvider {
     async uploadImage(title: string, image: string, path?: string): Promise<string> {
         try {
             service.v2.config(credentials)
-            let data = await service.v2.uploader.upload(image, { folder: path, public_id: title, overwrite: true })
+            let data = await service.v2.uploader.upload(image, { folder: path, public_id: title, overwrite: true, unique_filename: true, transformation: {height: 540} })
             return data.url
         } catch(error) {
             console.log(error)
