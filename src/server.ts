@@ -15,7 +15,9 @@ const server = express();
 
 //API Types
 server.use(express.json());
+
 server.use(cors())
+
 server.use(bodyParser.json())
 server.use(bodyParser({limit: '50mb'}))
 
