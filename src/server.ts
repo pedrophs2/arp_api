@@ -1,11 +1,12 @@
-import express from 'express';
 import cors from 'cors'
-import bodyParser from 'body-parser'
 import routes from './routes';
 import path from 'path'
 import swaggerJsDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import { swaggerOptions } from './config/swagger.options'
+
+const express = require('express')
+const bodyParser = require('body-parser')
 
 //Swagger Config
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
@@ -14,8 +15,6 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions)
 const server = express();
 
 //API Types
-server.use(express.json());
-
 server.use(cors())
 
 server.use(bodyParser.json())
