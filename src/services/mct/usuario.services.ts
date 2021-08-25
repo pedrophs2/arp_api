@@ -27,7 +27,7 @@ class UsuarioServices {
             let [data]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE usuario_id = ?', [usuario_id])
 
             if(data[0] != undefined)
-                return data
+                return data[0]
             else
                 return null
 
