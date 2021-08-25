@@ -85,8 +85,8 @@ class UsuarioServices {
             user.usuario_logo = await ImageProvider.upload(user.usuario_cpf, user.usuario_logo, IMAGE_PATH)
 
             const conn = await db.getConnection()
-            const sql = 'UPDATE MCT_USUARIO SET usuario_nome = ?, usuario_email = ?, usuario_fone = ?, usuario_logo = ? WHERE usuario_id = ?'
-            const values = [user.usuario_nome, user.usuario_email, user.usuario_fone, user.usuario_logo, usuario_id]
+            const sql = 'UPDATE MCT_USUARIO SET usuario_nome = ?, usuario_email = ?, usuario_fone = ?, usuario_logo = ?, usuario_cpf = ? WHERE usuario_id = ?'
+            const values = [user.usuario_nome, user.usuario_email, user.usuario_fone, user.usuario_logo, user.usuario_cpf, usuario_id]
 
             let data = await conn.query(sql, values)
             console.log(data)
