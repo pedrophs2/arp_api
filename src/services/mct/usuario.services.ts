@@ -89,7 +89,6 @@ class UsuarioServices {
             const values = [user.usuario_nome, user.usuario_email, user.usuario_fone, user.usuario_logo, user.usuario_cpf, usuario_id]
 
             let data = await conn.query(sql, values)
-            console.log(data)
 
             if(data != null)
                 return true

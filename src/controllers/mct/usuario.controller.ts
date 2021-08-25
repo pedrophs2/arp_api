@@ -52,7 +52,6 @@ class UsuarioController {
             let user = req.body
 
             let response = await UsuarioServices.updateUser(user, req.params.id)
-            console.log(response)
 
             if(response != null)
                 res.status(200).send(response)
