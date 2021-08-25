@@ -1,6 +1,8 @@
+import ImageProvider from './../../third_party/images/image.provider';
 import db from '../../config/database'
 import { Usuario } from '../../models/mct/usuario.model'
 
+const IMAGE_PATH = 'mct/usuarios'
 class UsuarioServices {
 
     async listUsers() {
@@ -14,7 +16,7 @@ class UsuarioServices {
                 return null
 
         } catch (error) {
-            console.log(error)
+            console.error(error)
             return null
         }
     }
@@ -30,7 +32,7 @@ class UsuarioServices {
                 return null
 
         } catch (error) {
-            console.log(error)
+            console.error(error)
             return false
         }
     }
@@ -46,7 +48,7 @@ class UsuarioServices {
                 return null
 
         } catch (error) {
-            console.log(error)
+            console.error(error)
             return false
         }
     }
@@ -59,9 +61,11 @@ class UsuarioServices {
             return false
 
         try {
+            user.usuario_logo = await ImageProvider.upload(user.usuario_cpf, user.usuario_logo, IMAGE_PATH)
+
             const conn = await db.getConnection()
-            const sql = 'INSERT INTO MCT_USUARIO (usuario_cpf, usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip) VALUES (?, ?, ?, ?, ?, ?, ?)'
-            const values = [user.usuario_cpf, user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip]
+            const sql = 'INSERT INTO MCT_USUARIO (usuario_cpf, usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip, usuario_logo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+            const values = [user.usuario_cpf, user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip, user.usuario_logo]
 
             let data = await conn.query(sql, values)
 
@@ -71,16 +75,18 @@ class UsuarioServices {
                 return 0
 
         }catch (error) {
-            console.log(error)
+            console.error(error)
             return -1
         }
     }
 
     async updateUser(user: Usuario, usuario_id: number) {
         try{
+            user.usuario_logo = await ImageProvider.upload(user.usuario_cpf, user.usuario_logo, IMAGE_PATH)
+
             const conn = await db.getConnection()
-            const sql = 'UPDATE MCT_USUARIO SET usuario_nome = ?, usuario_email = ?, usuario_senha = ?, usuario_fone = ? WHERE usuario_id = ?'
-            const values = [user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, usuario_id]
+            const sql = 'UPDATE MCT_USUARIO SET usuario_nome = ?, usuario_email = ?, usuario_senha = ?, usuario_fone = ?, usuario_logo = ? WHERE usuario_id = ?'
+            const values = [user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_fone, usuario_id]
 
             let data = await conn.query(sql, values)
 
@@ -90,7 +96,7 @@ class UsuarioServices {
                 return false
 
         } catch(error) {
-            console.log(error)
+            console.error(error)
             return false
         }
     }
@@ -107,7 +113,7 @@ class UsuarioServices {
                 return false
 
         } catch(error) {
-            console.log(error)
+            console.error(error)
             return false
         }
     }
