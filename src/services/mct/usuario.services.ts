@@ -61,11 +61,9 @@ class UsuarioServices {
             return false
 
         try {
-            user.usuario_logo = await ImageProvider.upload(user.usuario_cpf, user.usuario_logo, IMAGE_PATH)
-
             const conn = await db.getConnection()
             const sql = 'INSERT INTO MCT_USUARIO (usuario_cpf, usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip, usuario_logo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
-            const values = [user.usuario_cpf, user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip, user.usuario_logo]
+            const values = [user.usuario_cpf, user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip, null]
 
             let data = await conn.query(sql, values)
 
