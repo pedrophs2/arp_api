@@ -1,3 +1,4 @@
+import { Usuario } from './../../../models/mct/usuario.model';
 import { Empresa } from './../../../models/mct/empresa.model';
 import { Orcamento } from './../../../models/mct/orcamento.model';
 import fs from 'fs'
@@ -5,6 +6,7 @@ import pdf from 'html-pdf'
 import path from 'path'
 import moment from 'moment'
 import EmpresaServices from '../../../services/mct/empresa.services'
+import usuarioServices from '../usuario.services';
 
 var orcamento = path.join(__dirname, '../../../assets/html/orcamento-resumido.html')
 var filename = orcamento.replace('.html', '.pdf').replace('\\html\\', '\\pdf\\')
@@ -33,6 +35,10 @@ class OrcamentoPDFServices {
             tmpString = tmpString.replace('{{nr_telefone}}', empresa.nr_telefone)
             tmpString = tmpString.replace('{{nm_empresa}}', empresa.nm_empresa)
             tmpString = tmpString.replace('{{nr_cnpj}}', empresa.nr_cnpj)
+
+            //Usuário
+            const usuario: Usuario = await usuarioServices.getUser(orcamento.orcamento_id_usuario)
+            tmpString = tmpString.replace('{{usuario_logo}}', usuario.usuario_logo || 'https://res.cloudinary.com/arpdevs-tecnologia/image/upload/v1630059391/mct/props/WhatsApp_Image_2021-04-15_at_4.08.29_PM_cbwpgw.jpg')
 
             // Cliente
             if(orcamento.orcamento_cliente) {
