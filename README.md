@@ -70,4 +70,3 @@ Todos os controllers tem a função de basicamente receber uma requisição, cha
 
 ### services/projeto/model.controller.ts
 As classes services são onde de fato as requisições acontecem, seja uma simples conversão de dados, a uma chamada ao banco de dados, tudo é feito na classe services, isso impede que misturemos muito da lógica no tratamento de respostas da API
-
