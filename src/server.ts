@@ -45,4 +45,5 @@ server.get('', async(req: any, res: any) => {
 //API Startup (PORT: 3000)
 server.listen(3000, () => {
     console.log('API ONLINE => http://arpdevs.com.br/api/\'project\'/\'class\'/\'endpoint\'')
+    console.log('Dev => http://localhost:3000/api/\'project\'/\'class\'/\'endpoint\'')
 });

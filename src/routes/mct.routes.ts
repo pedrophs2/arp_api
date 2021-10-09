@@ -10,6 +10,7 @@ import porcelanatoOrcamentoRoutes from './mct/porcelanato-orcamento.routes'
 import custoRoutes from './mct/custos.routes'
 import dashboardRoutes from './mct/dashboard.routes'
 import empresaRoutes from './mct/empresa.routes'
+import vendaRoutes from './mct/venda.routes'
 
 const mctRouter = Router();
 
@@ -23,5 +24,6 @@ mctRouter.use('/porcelanato-orcamento', porcelanatoOrcamentoRoutes)
 mctRouter.use('/custos', custoRoutes)
 mctRouter.use('/dashboard', dashboardRoutes)
 mctRouter.use('/empresa', empresaRoutes)
+mctRouter.use('/venda', vendaRoutes)
 
 export default mctRouter;
