@@ -54,9 +54,9 @@ class UsuarioController {
             let response = await UsuarioServices.updateUser(user, req.params.id)
 
             if(response != null)
-                res.status(200).send('Usuário atualizado com sucesso')
+                res.status(200).send(response)
             else
-                res.status(500).send({message: 'Erro na atualização do usuário', error: null})
+                res.status(401).send({message: 'Erro na atualização do usuário'})
 
         } catch(error) {
             res.status(500).send({message: 'ERRO', error: error})

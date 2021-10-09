@@ -39,6 +39,7 @@ class PorcelanatoServices {
 
     async createPorcelanato(porcelanato: Porcelanato): Promise<boolean> {
         try {
+            porcelanato.porcelanato_imagem = await ImageProvider.upload(porcelanato.porcelanato_nome, porcelanato.porcelanato_imagem, filePath)
             const conn = await db.getConnection()
             const sql = 'INSERT INTO MCT_PORCELANATO (porcelanato_nome, porcelanato_descricao, porcelanato_valor, porcelanato_imagem) VALUES (?, ?, ?, ?)'
             const values = [porcelanato.porcelanato_nome, porcelanato.porcelanato_descricao, porcelanato.porcelanato_valor, porcelanato.porcelanato_imagem]
@@ -57,7 +58,6 @@ class PorcelanatoServices {
 
     async updatePorcelanato(porcelanato: Porcelanato, porcelanato_id: number): Promise<boolean> {
         try {
-
             porcelanato.porcelanato_imagem = await ImageProvider.upload(porcelanato.porcelanato_nome, porcelanato.porcelanato_imagem, filePath)
             const conn = await db.getConnection()
             const sql = 'UPDATE MCT_PORCELANATO SET porcelanato_nome = ?, porcelanato_descricao = ?, porcelanato_valor = ?, porcelanato_imagem = ? WHERE porcelanato_id = ?'
