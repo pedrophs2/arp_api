@@ -11,6 +11,7 @@ import custoRoutes from './mct/custos.routes'
 import dashboardRoutes from './mct/dashboard.routes'
 import empresaRoutes from './mct/empresa.routes'
 import vendaRoutes from './mct/venda.routes'
+import planoRoutes from './mct/plano.routes'
 
 const mctRouter = Router();
 
@@ -25,5 +26,6 @@ mctRouter.use('/custos', custoRoutes)
 mctRouter.use('/dashboard', dashboardRoutes)
 mctRouter.use('/empresa', empresaRoutes)
 mctRouter.use('/venda', vendaRoutes)
+mctRouter.use('/planos', planoRoutes)
 
 export default mctRouter;
