@@ -8,7 +8,7 @@ class UsuarioServices {
     async listUsers() {
         try{
             const conn = await db.getConnection()
-            let [data]: any = await conn.promise().query('SELECT * FROM MCT_USUARIO')
+            let [data]: any = await conn.query('SELECT * FROM MCT_USUARIO')
 
             if(data[0] != undefined)
                 return data
