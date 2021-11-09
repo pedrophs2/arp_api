@@ -18,6 +18,21 @@ export class AuthController {
         }
     }
 
+    async adminLogin(req: any, res: any) {
+        try {
+            let user = <Usuario> req.body
+            let response = await AuthServices.adminLogin(user)
+
+            if(response.token != null){
+                res.status(200).send(response)
+            }else{
+                res.status(400).send({message: 'Usuário ou senha incorretos.'})
+            }
+        } catch(error) {
+            res.status(500).send({message: 'Erro no processo de requisição' + error})
+        }
+    }
+
     async forgot(req:any, res:any) {
         try {
             let response = await AuthServices.forgot(req.body.usuario_email)
