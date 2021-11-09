@@ -3,6 +3,9 @@ import db from '../../config/database'
 import { Usuario } from '../../models/mct/usuario.model'
 
 const IMAGE_PATH = 'mct/usuarios'
+const CATEGORIA_CLIENTE = 0
+const CATEGORIA_ADMIN = 1
+
 class UsuarioServices {
 
     async listUsers() {
@@ -53,17 +56,19 @@ class UsuarioServices {
         }
     }
 
-    async createUser(user: Usuario) {
+    async createUser(user: Usuario, categoria?: number) {
 
         let check = await this.getUserByEmail(user.usuario_email)
+        let usuarioCategoria = categoria ? categoria : CATEGORIA_CLIENTE
 
         if(check != null)
             return false
 
         try {
             const conn = await db.getConnection()
-            const sql = 'INSERT INTO MCT_USUARIO (usuario_cpf, usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip, usuario_logo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
-            const values = [user.usuario_cpf, user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip, null]
+            const sql = 'INSERT INTO MCT_USUARIO (usuario_cpf, usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip, usuario_logo, usuario_categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+
+            const values = [user.usuario_cpf, user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, user.usuario_orcamentos, user.usuario_vip, null, usuarioCategoria]
 
             let data = await conn.query(sql, values)
 

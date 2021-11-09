@@ -47,6 +47,21 @@ class UsuarioController {
         }
     }
 
+    async createUserAdmin(req: any, res: any) {
+        try {
+            let user = req.body
+            let response = await UsuarioServices.createUser(user, 1)
+
+            if(response > 0)
+                res.status(201).send({message: 'Usuário inserido com sucesso', id: response})
+            else
+                res.status(500).send({message: 'Erro na inserção de usuário', error: null})
+
+        }catch (error) {
+            res.status(500).send({message: 'Erro: ' + error, error: error})
+        }
+    }
+
     async updateUser(req: any, res: any) {
         try{
             let user = req.body

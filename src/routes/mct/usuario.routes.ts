@@ -86,6 +86,7 @@ usuarioRoutes.get('/:id', JwtChecker.verifyJwt, UsuarioController.getUser)
  *                  description: Usuário não criado
  */
 usuarioRoutes.post('/', JwtChecker.verifyJwt, UsuarioController.createUser)
+usuarioRoutes.post('/admin', JwtChecker.verifyJwt, UsuarioController.createUserAdmin)
 usuarioRoutes.put('/:id', JwtChecker.verifyJwt, UsuarioController.updateUser)
 usuarioRoutes.delete('/:id', JwtChecker.verifyJwt, UsuarioController.deleteUser)
 
