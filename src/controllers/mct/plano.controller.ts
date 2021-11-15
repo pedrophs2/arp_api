@@ -29,6 +29,21 @@ class PlanoController {
         }
     }
 
+    async createPlano(req: any, res: any) {
+        let plano = req.body
+
+        try {
+            let data = await PlanoServices.createPlano(plano)
+
+            if(data)
+                res.status(201).send({message: 'Plano criado com sucesso'})
+            else   
+                res.status(400).send({message: 'Erro ao criar plano'})
+        } catch(error) {
+            res.status(500).send(error)
+        }
+    }
+
 }
 
 export default new PlanoController()
