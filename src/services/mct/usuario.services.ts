@@ -11,7 +11,23 @@ class UsuarioServices {
     async listUsers() {
         try{
             const conn = await db.getConnection()
-            let [data]: any = await conn.query('SELECT * FROM MCT_USUARIO')
+            let [data]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE usuario_categoria = ?' [CATEGORIA_CLIENTE])
+
+            if(data[0] != undefined)
+                return data
+            else
+                return null
+
+        } catch (error) {
+            console.error(error)
+            return null
+        }
+    }
+
+    async listUsersAdmin() {
+        try{
+            const conn = await db.getConnection()
+            let [data]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE usuario_categoria = ?' [CATEGORIA_ADMIN])
 
             if(data[0] != undefined)
                 return data

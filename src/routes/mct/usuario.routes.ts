@@ -18,6 +18,7 @@ const usuarioRoutes = Router();
  *                  description: Usuários não encontrados
  */
 usuarioRoutes.get('/', JwtChecker.verifyJwt, UsuarioController.listUsers)
+usuarioRoutes.get('/admin', JwtChecker.verifyJwt, UsuarioController.listUsersAdmin)
 
 /**
  * @swagger

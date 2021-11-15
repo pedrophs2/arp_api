@@ -16,6 +16,20 @@ class UsuarioController {
         }
     }
 
+    async listUsersAdmin(req: any, res: any) {
+        try{
+            let response = await UsuarioServices.listUsersAdmin()
+
+            if(response != null)
+                res.status(200).send(response)
+            else
+                res.status(204).send({message: 'Nenhum usuário encontrado', error: []})
+
+        } catch (error) {
+            res.status(500).send({message: 'Erro no processo de requisição', error: error})
+        }
+    }
+
     async getUser(req: any, res: any) {
         let id = req.params.id
 

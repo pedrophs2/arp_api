@@ -5,10 +5,11 @@ import arpmailer from '../../config/nodemailer'
 import { Usuario } from '../../models/mct/usuario.model'
 
 const USUARIO_ADMIN = 1
+const EXPIRE_APP = 864000
+const EXPIRE_ADM = 3600
 class AuthServices {
 
     async login(user: Usuario) {
-        const expire = 864000
 
         try{
             const conn = await db.getConnection()
@@ -17,8 +18,8 @@ class AuthServices {
 
             if(data != undefined){
                 if(data.usuario_senha == user.usuario_senha){
-                    const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: expire})
-                    console.log(`Usuário ${data.usuario_email} autenticado por ${(expire/3600)/24} dias`)
+                    const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: EXPIRE_APP})
+                    console.log(`Usuário ${data.usuario_email} autenticado por ${(EXPIRE_APP/3600)/24} dias`)
                     return {signed: true, token, usuario: data}
                 }else{
                     return {signed: false, token: null, usuario: null}
@@ -34,8 +35,6 @@ class AuthServices {
     }
 
     async adminLogin(user: Usuario) {
-        const expire = 864000
-
         try{
             const conn = await db.getConnection()
             let [resp]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ? AND USUARIO_CATEGORIA = ?', [user.usuario_email, USUARIO_ADMIN])
@@ -43,8 +42,8 @@ class AuthServices {
 
             if(data != undefined){
                 if(data.usuario_senha == user.usuario_senha){
-                    const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: expire})
-                    console.log(`Usuário ${data.usuario_email} autenticado por ${(expire/3600)/24} dias`)
+                    const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: EXPIRE_ADM})
+                    console.log(`Usuário ${data.usuario_email} autenticado por ${(EXPIRE_ADM/3600)/24} hora(s)`)
                     return {signed: true, token, usuario: data}
                 }else{
                     return {signed: false, token: null, usuario: null}
