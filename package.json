@@ -3,6 +3,9 @@
     "version": "0.4.1",
     "description": "",
     "main": "index.js",
+    "engines": {
+        "node": "12.x"
+    },
     "scripts": {
         "start": "npm install && node --experimental-modules --loader ts-node/esm src/server.ts",
         "build": "tsc",
