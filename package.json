@@ -7,7 +7,7 @@
         "node": "12.x"
     },
     "scripts": {
-        "start": "npm install && node --experimental-modules --loader src/server.js",
+        "start": "npm install && node --experimental-modules --loader ts-node/esm src/server.ts",
         "build": "tsc",
         "dev": "npm install && ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
     },
