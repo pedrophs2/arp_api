@@ -9,7 +9,10 @@
     "scripts": {
         "start": "node dist/server.js",
         "start:dev": "npm install && node --experimental-modules --loader ts-node/esm src/server.ts",
-        "build": "tsc -p .",
+        "build": "npm install && tsc -p .",
+        "postbuild": "npm run copyDist && npm run copyAssets",
+        "copyDist": "shx cp -R src/dist dist",
+        "copyAssets": "shx cp -R src/assets dist",
         "dev": "npm install && ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
     },
     "dependencies": {
@@ -42,6 +45,7 @@
         "@types/swagger-jsdoc": "^6.0.0",
         "@types/swagger-ui-express": "^4.1.2",
         "nodemon": "^2.0.7",
+        "shx": "^0.3.3",
         "ts-node": "^9.1.1",
         "ts-node-dev": "^1.1.6",
         "typescript": "^4.2.4"
