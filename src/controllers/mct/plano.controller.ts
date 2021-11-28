@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { Plano } from '../../models/mct/plano.model'
 import PlanoServices from './../../services/mct/plano.services'
 
 class PlanoController {
@@ -30,7 +31,7 @@ class PlanoController {
     }
 
     async createPlano(req: any, res: any) {
-        let plano = req.body
+        let plano = <Plano> req.body
 
         try {
             let data = await PlanoServices.createPlano(plano)
@@ -39,6 +40,21 @@ class PlanoController {
                 res.status(201).send({message: 'Plano criado com sucesso'})
             else   
                 res.status(400).send({message: 'Erro ao criar plano'})
+        } catch(error) {
+            res.status(500).send(error)
+        }
+    }
+
+    async updatePlano(req: Request, res: Response) {
+        let plano = <Plano> req.body
+
+        try {
+            let data = await PlanoServices.updatePlano(plano)
+
+            if(data)
+                res.status(200).send({message: 'Plano salvo com sucesso'})
+            else
+                res.status(400).send({message: 'Erro ao salvar plano'})
         } catch(error) {
             res.status(500).send(error)
         }
