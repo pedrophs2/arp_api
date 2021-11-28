@@ -89,6 +89,7 @@ usuarioRoutes.get('/:id', JwtChecker.verifyJwt, UsuarioController.getUser)
 usuarioRoutes.post('/', JwtChecker.verifyJwt, UsuarioController.createUser)
 usuarioRoutes.post('/admin', JwtChecker.verifyJwt, UsuarioController.createUserAdmin)
 usuarioRoutes.put('/:id', JwtChecker.verifyJwt, UsuarioController.updateUser)
+usuarioRoutes.put('/admin/:id', JwtChecker.verifyJwt, UsuarioController.updateUserAdmin)
 usuarioRoutes.delete('/:id', JwtChecker.verifyJwt, UsuarioController.deleteUser)
 
 export default usuarioRoutes

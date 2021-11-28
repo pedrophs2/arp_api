@@ -92,6 +92,21 @@ class UsuarioController {
         }
     }
 
+    async updateUserAdmin(req: any, res: any) {
+        try{
+            let user = req.body
+
+            let response = await UsuarioServices.updateUserAdmin(user, req.params.id)
+
+            if(response != null)
+                res.status(200).send(response)
+            else
+                res.status(401).send({message: 'Erro na atualização do usuário'})
+
+        } catch(error) {
+            res.status(500).send({message: 'ERRO', error: error})
+        }
+    }
 
     async deleteUser(req: any, res: any) {
         let id = req.params.id

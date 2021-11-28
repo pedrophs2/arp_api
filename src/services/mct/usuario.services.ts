@@ -78,7 +78,7 @@ class UsuarioServices {
         let usuarioCategoria = categoria ? categoria : CATEGORIA_CLIENTE
 
         if(check != null)
-            return false
+            throw new Error('Usuário já cadastrado')
 
         try {
             const conn = await db.getConnection()
@@ -105,7 +105,7 @@ class UsuarioServices {
         let usuarioCategoria = categoria ? categoria : CATEGORIA_CLIENTE
 
         if(check != null)
-            return false
+            throw new Error('Usuário já cadastrado')
 
         try {
             const conn = await db.getConnection()
@@ -133,6 +133,27 @@ class UsuarioServices {
             const conn = await db.getConnection()
             const sql = 'UPDATE MCT_USUARIO SET usuario_nome = ?, usuario_email = ?, usuario_fone = ?, usuario_logo = ?, usuario_cpf = ? WHERE usuario_id = ?'
             const values = [user.usuario_nome, user.usuario_email, user.usuario_fone, user.usuario_logo, user.usuario_cpf, usuario_id]
+
+            let data = await conn.query(sql, values)
+
+            if(data != null)
+                return true
+            else
+                return false
+
+        } catch(error) {
+            console.error(error)
+            return false
+        }
+    }
+
+    async updateUserAdmin(user: Usuario, usuario_id: number) {
+        try{
+            user.usuario_logo = await ImageProvider.upload(user.usuario_cpf, user.usuario_logo, IMAGE_PATH)
+
+            const conn = await db.getConnection()
+            const sql = 'UPDATE MCT_USUARIO SET usuario_nome = ?, usuario_email = ?, usuario_fone = ?, usuario_cpf = ? WHERE usuario_id = ?'
+            const values = [user.usuario_nome, user.usuario_email, user.usuario_fone, user.usuario_cpf, usuario_id]
 
             let data = await conn.query(sql, values)
 
