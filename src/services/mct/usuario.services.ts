@@ -99,6 +99,33 @@ class UsuarioServices {
         }
     }
 
+    async createUserAdmin(user: Usuario, categoria?: number) {
+
+        let check = await this.getUserByEmail(user.usuario_email)
+        let usuarioCategoria = categoria ? categoria : CATEGORIA_CLIENTE
+
+        if(check != null)
+            return false
+
+        try {
+            const conn = await db.getConnection()
+            const sql = 'INSERT INTO MCT_USUARIO (usuario_cpf, usuario_nome, usuario_email, usuario_senha, usuario_fone, usuario_orcamentos, usuario_vip, usuario_categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+
+            const values = [user.usuario_cpf, user.usuario_nome, user.usuario_email, user.usuario_senha, user.usuario_fone, 0, 1, usuarioCategoria]
+
+            let data = await conn.query(sql, values)
+
+            if(data != null)
+                return data[0].insertId
+            else
+                return 0
+
+        }catch (error) {
+            console.error(error)
+            return -1
+        }
+    }
+
     async updateUser(user: Usuario, usuario_id: number) {
         try{
             user.usuario_logo = await ImageProvider.upload(user.usuario_cpf, user.usuario_logo, IMAGE_PATH)
