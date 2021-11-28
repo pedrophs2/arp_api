@@ -149,8 +149,6 @@ class UsuarioServices {
 
     async updateUserAdmin(user: Usuario, usuario_id: number) {
         try{
-            user.usuario_logo = await ImageProvider.upload(user.usuario_cpf, user.usuario_logo, IMAGE_PATH)
-
             const conn = await db.getConnection()
             const sql = 'UPDATE MCT_USUARIO SET usuario_nome = ?, usuario_email = ?, usuario_fone = ?, usuario_cpf = ? WHERE usuario_id = ?'
             const values = [user.usuario_nome, user.usuario_email, user.usuario_fone, user.usuario_cpf, usuario_id]
