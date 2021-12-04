@@ -22,26 +22,28 @@ server.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 //API Routes
 server.use(routes);
-server.use('/mct/public', express.static(`${__dirname}/hosted_apps/mercado-adm`));
-server.use('/csn/public', express.static(`${__dirname}/hosted_apps/casa-nova`));
-server.use('/assets/public', express.static(`${__dirname}/hosted_apps/arp-web`));
+server.use(express.static(`${__dirname}/dist/mercado-adm`));
+// server.use('/csn/public', express.static(`${__dirname}/hosted_apps/casa-nova`));
+// server.use('/assets/public', express.static(`${__dirname}/hosted_apps/arp-web`));
+
+server.set('view engine', 'pug')
 
 //Swagger Route
 server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 //Mercado Construtor (Admin)
-server.get('/mct/admin', async (req: any, res: any) => {
-    res.sendFile(path.join(`${__dirname}/hosted_apps/mercado-adm/index.html`))
-})
+// server.get('/mct/admin', async (req: any, res: any) => {
+//     res.sendFile(path.join(`${__dirname}/dist/mercado-adm/index.html`))
+// })
 
 //CasaNova
-server.get('/casanova', async (req: any, res: any) => {
-    res.sendFile(path.join(`${__dirname}/hosted_apps/casa-nova/index.html`))
-})
+// server.get('/casanova', async (req: any, res: any) => {
+//     res.sendFile(path.join(`${__dirname}/hosted_apps/casa-nova/index.html`))
+// })
 
 //ArpWeb
 server.get('', async(req: any, res: any) => {
-    res.sendFile(path.join(`${__dirname}/hosted_apps/arp-web/index.html`))
+    res.sendFile(path.join(`${__dirname}/dist/mercado-adm/index.html`))
 })
 
 //API Startup (PORT: 3000)

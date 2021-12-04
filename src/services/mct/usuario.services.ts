@@ -128,7 +128,8 @@ class UsuarioServices {
 
     async updateUser(user: Usuario, usuario_id: number) {
         try{
-            user.usuario_logo = await ImageProvider.upload(user.usuario_cpf, user.usuario_logo, IMAGE_PATH)
+            if(user.usuario_logo)
+                user.usuario_logo = await ImageProvider.upload(user.usuario_cpf, user.usuario_logo, IMAGE_PATH)
 
             const conn = await db.getConnection()
             const sql = 'UPDATE MCT_USUARIO SET usuario_nome = ?, usuario_email = ?, usuario_fone = ?, usuario_logo = ?, usuario_cpf = ? WHERE usuario_id = ?'

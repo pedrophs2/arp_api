@@ -3,9 +3,6 @@
     "version": "0.4.1",
     "description": "",
     "main": "index.js",
-    "engines": {
-        "node": "12.x"
-    },
     "scripts": {
         "start": "npm install && node --experimental-modules --loader ts-node/esm src/server.ts",
         "start:dev": "npm install && node --experimental-modules --loader ts-node/esm src/server.ts",
@@ -31,6 +28,7 @@
         "mysql2": "^2.2.5",
         "nodemailer": "^6.5.0",
         "pdf-creator-node": "^2.2.2",
+        "pug": "^3.0.2",
         "sequelize": "^6.5.0",
         "swagger-jsdoc": "6.0.0",
         "swagger-ui-express": "^4.1.6"
