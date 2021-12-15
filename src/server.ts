@@ -10,6 +10,7 @@ const bodyParser = require('body-parser')
 
 //Swagger Config
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
+const NOT_FOUND = 404
 
 //Server Startup
 const server = express();
@@ -43,6 +44,10 @@ server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 //ArpWeb
 server.get('', async(req: any, res: any) => {
+    res.sendFile(path.join(`${__dirname}/dist/mercado-adm/index.html`))
+})
+
+server.get('*', async(req: any, res: any) => {
     res.sendFile(path.join(`${__dirname}/dist/mercado-adm/index.html`))
 })
 
