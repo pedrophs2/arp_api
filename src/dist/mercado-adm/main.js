@@ -147,7 +147,7 @@ MainComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComp
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Code\mercadoAdmin\frontend\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! C:\Code\Angular\mercadoAdmin\frontend\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -171,7 +171,7 @@ class SidebarComponent {
     ngOnInit() { }
 }
 SidebarComponent.ɵfac = function SidebarComponent_Factory(t) { return new (t || SidebarComponent)(); };
-SidebarComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SidebarComponent, selectors: [["app-sidebar"]], decls: 35, vars: 0, consts: [["id", "accordionSidebar", 1, "navbar-nav", "sidebar", "bg-gradient-danger", "accordion"], ["href", "#", 1, "sidebar-brand", "d-flex"], [1, "sidebar-brand-icon", "rotate-n-15"], [1, "sidebar-brand-text", "mx-3"], [1, "sidebar-divider", "my-0"], [1, "nav-item", "active"], ["routerLink", "/home", 1, "nav-link"], [1, "material-icons"], [1, "sidebar-divider"], [1, "nav-item"], ["routerLink", "/users", 1, "nav-link"], ["routerLink", "/clients", 1, "nav-link"], ["href", "/plans", 1, "nav-link"], [1, "sidebar-divider", "d-none", "d-md-block"], [1, "text-center", "d-none", "d-md-inline"], ["id", "sidebarToggle", 1, "rounded-circle", "border-0"]], template: function SidebarComponent_Template(rf, ctx) { if (rf & 1) {
+SidebarComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SidebarComponent, selectors: [["app-sidebar"]], decls: 35, vars: 0, consts: [["id", "accordionSidebar", 1, "navbar-nav", "sidebar", "bg-gradient-danger", "accordion"], ["href", "#", 1, "sidebar-brand", "d-flex"], [1, "sidebar-brand-icon", "rotate-n-15"], [1, "sidebar-brand-text", "mx-3"], [1, "sidebar-divider", "my-0"], [1, "nav-item", "active"], ["routerLink", "/home", 1, "nav-link"], [1, "material-icons"], [1, "sidebar-divider"], [1, "nav-item"], ["routerLink", "/users", 1, "nav-link"], ["routerLink", "/clients", 1, "nav-link"], ["routerLink", "/plans", 1, "nav-link"], [1, "sidebar-divider", "d-none", "d-md-block"], [1, "text-center", "d-none", "d-md-inline"], ["id", "sidebarToggle", 1, "rounded-circle", "border-0"]], template: function SidebarComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "ul", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
