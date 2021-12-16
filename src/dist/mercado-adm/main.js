@@ -817,7 +817,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    api: 'http://arpdevs.com.br/api/mct',
+    api: 'https://arp-api.herokuapp.com/api/mct',
 };
 // export const environment = {
 //     production: false,
