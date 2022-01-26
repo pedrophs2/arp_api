@@ -13,8 +13,9 @@ class AuthServices {
 
         try{
             const conn = await db.getConnection()
-            let [resp]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ? AND USUARIO_CATEGORIA = 0', [user.usuario_email])
+            let [resp]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [user.usuario_email])
             let data = resp[0]
+            console.log(resp)
 
             if(data != undefined){
                 if(data.usuario_senha == user.usuario_senha){
