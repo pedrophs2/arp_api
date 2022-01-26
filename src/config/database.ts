@@ -15,11 +15,11 @@ class mysqldb implements Connection {
     public async connect() {
         try {
             const pool = await mysql.createPool({
-                host: 'mysql742.umbler.com',
-                user: 'arp-master',
-                password: 'arpmaster2021',
-                port: 41890,
-                database: 'arp-api-msql',
+                host: 'sql716.main-hosting.eu',
+                user: 'u490967214_arpmaster',
+                password: 'Arpmaster2022',
+                port: 3306,
+                database: 'u490967214_arpapi',
                 waitForConnections: true,
                 connectionLimit: 25,
                 queueLimit: 0
