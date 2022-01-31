@@ -40,7 +40,7 @@ class ClienteServices {
             cliente.cliente_logo = await ImageProvider.upload(cliente.cliente_nome, cliente.cliente_logo, IMAGE_PATH)
 
             const conn = await db.getConnection()
-            const query = 'INSERT INTO MCT_CLIENTE (cliente_id_usuario, cliente_cpf_cnpj cliente_nome, cliente_fone, cliente_endereco, cliente_logo) VALUES (?, ?, ?, ?, ?, ?)'
+            const query = 'INSERT INTO MCT_CLIENTE (cliente_id_usuario, cliente_cpf_cnpj, cliente_nome, cliente_fone, cliente_endereco, cliente_logo) VALUES (?, ?, ?, ?, ?, ?)'
             const values = [cliente.cliente_id_usuario, cliente.cliente_cpf_cnpj, cliente.cliente_nome, cliente.cliente_fone, cliente.cliente_endereco, cliente.cliente_logo]
 
             let data = await conn.query(query, values)
