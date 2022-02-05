@@ -8,7 +8,7 @@ class DashboardServices {
     public async mountDashboard(cdUsuario: number): Promise<Dashboard> {
         try {
             let dashboard: Dashboard = new Dashboard()
-            dashboard.qtd_orcamentos = await this.getOrcamentosMes(cdUsuario)
+            dashboard.qtd_orcamentos = await this.getOrcamentos(cdUsuario)
             dashboard.qtd_clientes = await this.getClientesCadastrados(cdUsuario)
             dashboard.cd_ultimo_orcamento = await this.getCodUltimoOrcamento(cdUsuario)
 
@@ -18,13 +18,11 @@ class DashboardServices {
         }
     }
 
-    private async getOrcamentosMes(cdUsuario: number): Promise<number> {
+    private async getOrcamentos(cdUsuario: number): Promise<number> {
         try {
             const conn = await db.getConnection()
-            let date = moment(new Date()).format('yyyy-MM-DD')
-            date = date.substr(0,8).concat('01')
 
-            let [resp]: any = await conn.query('SELECT COUNT(*) AS orcamentos FROM MCT_ORCAMENTO WHERE ORCAMENTO_DATA >= ? AND ORCAMENTO_ID_USUARIO = ?', [date, cdUsuario])
+            let [resp]: any = await conn.query('SELECT COUNT(*) AS orcamentos FROM MCT_ORCAMENTO WHERE ORCAMENTO_ID_USUARIO = ?', [cdUsuario])
 
             let data = resp[0]
 
