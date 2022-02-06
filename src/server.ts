@@ -32,16 +32,6 @@ server.set('view engine', 'pug')
 //Swagger Route
 server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
-//Mercado Construtor (Admin)
-// server.get('/mct/admin', async (req: any, res: any) => {
-//     res.sendFile(path.join(`${__dirname}/dist/mercado-adm/index.html`))
-// })
-
-//CasaNova
-// server.get('/casanova', async (req: any, res: any) => {
-//     res.sendFile(path.join(`${__dirname}/hosted_apps/casa-nova/index.html`))
-// })
-
 //ArpWeb
 server.get('', async(req: any, res: any) => {
     res.sendFile(path.join(`${__dirname}/dist/mercado-adm/index.html`))
@@ -53,6 +43,6 @@ server.get('*', async(req: any, res: any) => {
 
 //API Startup (PORT: 3000)
 server.listen(process.env.PORT || 3000, () => {
-    console.log('API ONLINE => http://arpdevs.com.br/api/\'project\'/\'class\'/\'endpoint\'')
-    console.log('Dev (AutoDeploy Works !) => http://localhost:3000/api/\'project\'/\'class\'/\'endpoint\'')
+    console.log('API ONLINE => https://arp-api.herokuapp.com/api/\'project\'/\'class\'/\'endpoint\'')
+    console.log('Dev Server => http://localhost:3000/api/\'project\'/\'class\'/\'endpoint\'')
 });

@@ -43,7 +43,7 @@ class OrcamentoServices {
     async createOrcamento(orcamento: Orcamento) {
         try {
             const conn = await db.getConnection()
-            const query = `INSERT INTO MCT_ORCAMENTO (${qb.buildParams(orcamentoColumns)}) VALUES (${qb.buildParamsSlot(35)})`
+            const query = `INSERT INTO MCT_ORCAMENTO (${qb.buildParams(orcamentoColumns)}) VALUES (${qb.buildParamsSlot(36)})`
             const values = [
                 orcamento.orcamento_id_cliente, orcamento.orcamento_id_usuario, orcamento.orcamento_nome, orcamento.orcamento_total,
                 orcamento.orcamento_mo_interna, orcamento.orcamento_mo_externa, orcamento.orcamento_disco, orcamento.orcamento_copo_cone_60,
@@ -52,7 +52,8 @@ class OrcamentoServices {
                 orcamento.orcamento_velcro_400, orcamento.orcamento_velcro_600, orcamento.orcamento_velcro_800, orcamento.orcamento_velcro_1200,
                 orcamento.orcamento_massa_plastica, orcamento.orcamento_dma, orcamento.orcamento_resina, orcamento.orcamento_cola_cuba,
                 orcamento.orcamento_silicone, orcamento.orcamento_estopa, orcamento.orcamento_furos, orcamento.orcamento_tubo_inox, orcamento.orcamento_distancia,
-                orcamento.orcamento_alimentacao, orcamento.orcamento_desconto,orcamento.orcamento_acrescimo, orcamento.orcamento_imposto, orcamento.orcamento_lucro, orcamento.orcamento_valor_final
+                orcamento.orcamento_alimentacao, orcamento.orcamento_desconto,orcamento.orcamento_acrescimo, orcamento.orcamento_imposto, orcamento.orcamento_lucro, 
+                orcamento.orcamento_valor_final, orcamento.orcamento_concluido
             ]
 
             let data = await conn.query(query, values)
@@ -83,7 +84,7 @@ class OrcamentoServices {
                 orcamento.orcamento_velcro_800, orcamento.orcamento_velcro_1200, orcamento.orcamento_massa_plastica, orcamento.orcamento_dma, orcamento.orcamento_resina,
                 orcamento.orcamento_cola_cuba, orcamento.orcamento_silicone, orcamento.orcamento_estopa, orcamento.orcamento_furos, orcamento.orcamento_tubo_inox,
                 orcamento.orcamento_distancia, orcamento.orcamento_alimentacao, orcamento.orcamento_desconto,orcamento.orcamento_acrescimo, orcamento.orcamento_imposto, orcamento.orcamento_lucro,
-                orcamento.orcamento_valor_final, orcamento_id
+                orcamento.orcamento_valor_final, orcamento.orcamento_concluido, orcamento_id
             ]
 
             let data = await conn.query(query, values)

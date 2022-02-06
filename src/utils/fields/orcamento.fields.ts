@@ -34,6 +34,7 @@ export const orcamentoColumns = [
     'orcamento_imposto',
     'orcamento_lucro',
     'orcamento_valor_final',
+    'orcamento_concluido'
 ];
 
 
@@ -73,4 +74,5 @@ export const orcamentoUpdateColumns = [
     'orcamento_imposto = ?',
     'orcamento_lucro = ?',
     'orcamento_valor_final = ?',
+    'orcamento_concluido = ?'
 ];

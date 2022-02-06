@@ -38,6 +38,7 @@ export class Orcamento {
     orcamento_lucro: number
     orcamento_valor_final: number
     orcamento_porcelanatos: PorcelanatoOrcamento[]
+    orcamento_concluido: boolean
 
     constructor(
         orcamento_id: number,
@@ -77,7 +78,8 @@ export class Orcamento {
         orcamento_imposto: number,
         orcamento_lucro: number,
         orcamento_valor_final: number,
-        orcamento_porcelanatos: PorcelanatoOrcamento[]
+        orcamento_porcelanatos: PorcelanatoOrcamento[],
+        orcamento_concluido: boolean
     ) {
         this.orcamento_id = orcamento_id
         this.orcamento_id_usuario = orcamento_id_usuario
@@ -117,5 +119,6 @@ export class Orcamento {
         this.orcamento_lucro = orcamento_lucro
         this.orcamento_valor_final = orcamento_valor_final
         this.orcamento_porcelanatos = orcamento_porcelanatos
+        this.orcamento_concluido = orcamento_concluido
     }
 }
