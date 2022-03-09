@@ -17,7 +17,7 @@ class mysqldb implements Connection {
             const pool = await mysql.createPool({
                 host: 'sql716.main-hosting.eu',
                 user: 'u490967214_arpmaster',
-                password: 'Arpmaster2022',
+                password: 'Ffba79bfb45',
                 port: 3306,
                 database: 'u490967214_arpapi',
                 waitForConnections: true,
