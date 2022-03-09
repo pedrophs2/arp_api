@@ -8,5 +8,6 @@ porcelanatoRoutes.get('/', JwtChecker.verifyJwt, PorcelanatoController.listPorce
 porcelanatoRoutes.get('/:porcelanato_id', JwtChecker.verifyJwt, PorcelanatoController.getPorcelanato)
 porcelanatoRoutes.post('/', JwtChecker.verifyJwt, PorcelanatoController.createPorcelanato)
 porcelanatoRoutes.put('/:porcelanato_id', JwtChecker.verifyJwt, PorcelanatoController.updatePorcelanato)
+porcelanatoRoutes.delete('/:porcelanato_id', JwtChecker.verifyJwt, PorcelanatoController.deletePorcelanato)
 
 export default porcelanatoRoutes

@@ -57,6 +57,21 @@ class PorcelanatoController {
             res.status(500).send({ message: 'Erro no processo de requisição'})
         }
     }
+
+    async deletePorcelanato(req: any, res: any) {
+        let porcelanato: Porcelanato = req.body
+
+        try {
+            let response = await PorcelanatoServices.deletePorcelanato(req.params.porcelanato_id)
+
+            if(response != null)
+                res.status(200).send(response)
+            else
+                res.status(204).send({message: 'Nenhum porcelanato encontrado'})
+        } catch (error) {
+            res.status(500).send({ message: 'Erro no processo de requisição'})
+        }
+    }
 }
 
 export default new PorcelanatoController()

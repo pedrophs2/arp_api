@@ -1,6 +1,8 @@
 import db from '../../config/database'
+import { Orcamento } from '../../models/mct/orcamento.model'
 import { Porcelanato } from '../../models/mct/porcelanato.model'
 import ImageProvider from '../../third_party/images/image.provider'
+import orcamentoServices from './orcamento.services'
 
 const filePath = 'mct/porcelanatos'
 class PorcelanatoServices {
@@ -69,6 +71,31 @@ class PorcelanatoServices {
                 return true
             else
                 return false
+        } catch(error) {
+            console.log(error)
+            return false
+        }
+    }
+
+    async deletePorcelanato(porcelanato_id: number): Promise<boolean> {
+        try {
+            const conn = await db.getConnection()
+            const sql = 'SELECT * FROM MCT_ORCAMENTO_PORCELANATO WHERE porcelanato_id = ?'
+            const values = [porcelanato_id]
+
+            let data = await conn.query(sql, values)
+
+            if(data != null)
+                throw new Error('Não é possível excluir um porcelanato cadastrado em um orçamento')
+            
+            const deleteSql = 'DELETE FROM MCT_PORCELANATO WHERE PORCELANATO_ID = ?'
+            
+            let response = await conn.query(deleteSql, [porcelanato_id])
+            if(response)
+                return true
+            
+            return false
+                
         } catch(error) {
             console.log(error)
             return false
