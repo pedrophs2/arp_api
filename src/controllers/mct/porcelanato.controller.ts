@@ -67,7 +67,6 @@ class PorcelanatoController {
             else
                 res.status(204).send({message: 'Nenhum porcelanato encontrado'})
         } catch (error: any) {
-            console.log(error.message)
             res.status(500).send({ message: error.message || 'Erro no processo de requisição'})
         }
     }
