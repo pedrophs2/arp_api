@@ -59,8 +59,6 @@ class PorcelanatoController {
     }
 
     async deletePorcelanato(req: any, res: any) {
-        let porcelanato: Porcelanato = req.body
-
         try {
             let response = await PorcelanatoServices.deletePorcelanato(req.params.porcelanato_id)
 
@@ -68,8 +66,9 @@ class PorcelanatoController {
                 res.status(200).send(response)
             else
                 res.status(204).send({message: 'Nenhum porcelanato encontrado'})
-        } catch (error) {
-            res.status(500).send({ message: 'Erro no processo de requisição'})
+        } catch (error: any) {
+            console.log(error.message)
+            res.status(500).send({ message: error.message || 'Erro no processo de requisição'})
         }
     }
 }
