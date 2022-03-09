@@ -85,8 +85,9 @@ class PorcelanatoServices {
 
             let data = await conn.query(sql, values)
             console.log(data)
+            console.log(data[0])
 
-            if(data[0] != null)
+            if(data[0])
                 throw new Error('Não é possível excluir um porcelanato cadastrado em um orçamento')
             
             const deleteSql = 'DELETE FROM MCT_PORCELANATO WHERE PORCELANATO_ID = ?'
