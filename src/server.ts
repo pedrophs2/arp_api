@@ -1,7 +1,6 @@
 import cors from 'cors'
 import routes from './routes';
 import path from 'path'
-import dotenv from 'dotenv'
 
 /*Swagger Imports*/
 import swaggerJsDoc from 'swagger-jsdoc'
@@ -10,6 +9,7 @@ import { swaggerOptions } from './config/swagger.options'
 
 const express = require('express')
 const bodyParser = require('body-parser')
+const dotenv =  require('dotenv')
 
 //Swagger Config
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
