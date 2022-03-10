@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "npm install && npx ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+        "start": "npx ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
         "start:dev": "npm install && node --experimental-modules --loader ts-node/esm src/server.ts",
         "build": "npm install && tsc -p .",
         "postbuild": "npm run copyDist && npm run copyAssets",
