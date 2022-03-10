@@ -4,12 +4,12 @@ class arpmailer {
 
     async sendMail(mail: string, password: string) {
         let transporter = nodemailer.createTransport({
-            host: 'smtp.umbler.com',
-            port: 587 ,
+            host: process.env.MAILER_HOST,
+            port: Number(process.env.MAILER_PORT) ,
             secure: false,
             auth: {
-                user: 'dev@arpdevs.com.br',
-                pass: 'ffba79bfb45!'
+                user: process.env.MAILER_USER,
+                pass: process.env.MAILER_PASS
             }
         })
 

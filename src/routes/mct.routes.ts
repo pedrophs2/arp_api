@@ -12,6 +12,7 @@ import dashboardRoutes from './mct/dashboard.routes'
 import empresaRoutes from './mct/empresa.routes'
 import vendaRoutes from './mct/venda.routes'
 import planoRoutes from './mct/plano.routes'
+import fixRoutes from './mct/fix.routes'
 
 const mctRouter = Router();
 
@@ -27,5 +28,6 @@ mctRouter.use('/dashboard', dashboardRoutes)
 mctRouter.use('/empresa', empresaRoutes)
 mctRouter.use('/venda', vendaRoutes)
 mctRouter.use('/planos', planoRoutes)
+mctRouter.use('/fix', fixRoutes)
 
 export default mctRouter;

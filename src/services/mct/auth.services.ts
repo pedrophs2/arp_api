@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import db from '../../config/database'
-import { hash } from '../../config/jwt'
 import arpmailer from '../../config/nodemailer'
 import { Usuario } from '../../models/mct/usuario.model'
 
@@ -15,22 +14,20 @@ class AuthServices {
             const conn = await db.getConnection()
             let [resp]: any = await conn.query('SELECT * FROM MCT_USUARIO WHERE USUARIO_EMAIL = ?', [user.usuario_email])
             let data = resp[0]
-            console.log(resp)
 
             if(data != undefined){
                 if(data.usuario_senha == user.usuario_senha){
-                    const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: EXPIRE_APP})
+                    const token = jwt.sign({userId: data.usuario_id}, process.env.JWT_HASH, {expiresIn: EXPIRE_APP})
                     console.log(`Usuário ${data.usuario_email} autenticado por ${(EXPIRE_APP/3600)/24} dias`)
                     return {signed: true, token, usuario: data}
                 }else{
                     return {signed: false, token: null, usuario: null}
                 }
-            } else {
-                return {signed: false, token: null, usuario: null}
             }
 
-        }catch(error) {
-            console.log(error)
+            return {signed: false, token: null, usuario: null}
+
+        } catch(error) {
             return {signed: false, token: null, usuario: null}
         }
     }
@@ -43,7 +40,7 @@ class AuthServices {
 
             if(data != undefined){
                 if(data.usuario_senha == user.usuario_senha){
-                    const token = jwt.sign({userId: data.usuario_id}, hash, {expiresIn: EXPIRE_ADM})
+                    const token = jwt.sign({userId: data.usuario_id}, process.env.JWT_HASH, {expiresIn: EXPIRE_ADM})
                     console.log(`Usuário ${data.usuario_email} autenticado por ${(EXPIRE_ADM/3600)/24} hora(s)`)
                     return {signed: true, token, usuario: data}
                 }else{

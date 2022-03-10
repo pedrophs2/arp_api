@@ -15,13 +15,13 @@ class mysqldb implements Connection {
     public async connect() {
         try {
             const pool = await mysql.createPool({
-                host: 'sql716.main-hosting.eu',
-                user: 'u490967214_arpmaster',
-                password: 'Ffba79bfb45',
-                port: 3306,
-                database: 'u490967214_arpapi',
+                host: process.env.SQL_HOST,
+                user: process.env.SQL_USER,
+                password: process.env.SQL_PASSWORD,
+                port: Number(process.env.SQL_PORT),
+                database: process.env.SQL_SCHEMA,
                 waitForConnections: true,
-                connectionLimit: 25,
+                connectionLimit: Number(process.env.SQL_LIMIT),
                 queueLimit: 0
             })
     

@@ -1,6 +1,9 @@
 import cors from 'cors'
 import routes from './routes';
 import path from 'path'
+import dotenv from 'dotenv'
+
+/*Swagger Imports*/
 import swaggerJsDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import { swaggerOptions } from './config/swagger.options'
@@ -10,27 +13,25 @@ const bodyParser = require('body-parser')
 
 //Swagger Config
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
-const NOT_FOUND = 404
 
 //Server Startup
+dotenv.config({path: './.env'})
 const server = express();
 
 //API Types
 server.use(cors())
 
-server.use(bodyParser.json({limit: '50mb'}));
-server.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+server.use(bodyParser.json({limit: process.env.JSON_LIMIT}));
+server.use(bodyParser.urlencoded({limit: process.env.JSON_LIMIT, extended: true}));
 
 //API Routes
 server.use(routes);
 server.use(express.static(`${__dirname}/dist/mercado-adm`));
-// server.use('/csn/public', express.static(`${__dirname}/hosted_apps/casa-nova`));
-// server.use('/assets/public', express.static(`${__dirname}/hosted_apps/arp-web`));
 
 server.set('view engine', 'pug')
 
 //Swagger Route
-server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+server.use(process.env.SWAGGER_ROUTE, swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 //ArpWeb
 server.get('', async(req: any, res: any) => {
@@ -42,7 +43,8 @@ server.get('*', async(req: any, res: any) => {
 })
 
 //API Startup (PORT: 3000)
-server.listen(process.env.PORT || 3000, () => {
+server.listen(process.env.PORT, () => {
     console.log('API ONLINE => https://arp-api.herokuapp.com/api/\'project\'/\'class\'/\'endpoint\'')
-    console.log('Dev Server => http://localhost:3000/api/\'project\'/\'class\'/\'endpoint\'')
+    console.log(`Dev Server => http://localhost:${process.env.PORT}/api/\'project\'/\'class\'/\'endpoint\'`)
+    console.log(`Environment Status: ${process.env.ENV_STATUS}`)
 });
