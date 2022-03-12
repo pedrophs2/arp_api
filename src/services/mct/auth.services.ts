@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import db from '../../config/database'
 import arpmailer from '../../config/nodemailer'
 import { Usuario } from '../../models/mct/usuario.model'
+import crypto from 'crypto'
 
 const USUARIO_ADMIN = 1
 const EXPIRE_APP = 864000
@@ -65,11 +66,34 @@ class AuthServices {
             if(data == undefined)
                 return false
 
-            let email = await arpmailer.sendMail(usuario_email, data.usuario_senha)
+            // let email = await arpmailer.sendMail(usuario_email, data.usuario_senha)
+            this.generateLink(data)
             return true
         }catch(error) {
             return false
         }
+    }
+
+    private async generateLink(usuario: any) {
+        const algorithm = process.env.CRYPT_ALG
+        const key = Buffer.from(process.env.CRYPT_KEY, 'hex')
+        const iv = Buffer.from(process.env.CRYPT_IV, 'hex')
+
+        let cipher = crypto.createCipheriv(algorithm, Buffer.from(key), iv)
+        let encrypted = cipher.update(JSON.stringify(usuario))
+        encrypted = Buffer.concat([encrypted, cipher.final()])
+        console.log(encrypted.toString('hex'))
+        this.decryptLink(encrypted.toString('hex'))
+    }
+
+    private async decryptLink(link: string) {
+        const iv = Buffer.from(process.env.CRYPT_IV, 'hex');
+        let encryptedText = Buffer.from(link, 'hex');
+        let decipher = crypto.createDecipheriv(process.env.CRYPT_ALG, Buffer.from(process.env.CRYPT_KEY, 'hex'), iv);
+        let decrypted = decipher.update(encryptedText);
+        decrypted = Buffer.concat([decrypted, decipher.final()]);
+        console.log(JSON.parse(decrypted.toString()))
+    
     }
 
 }

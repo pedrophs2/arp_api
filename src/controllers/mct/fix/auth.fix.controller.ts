@@ -4,7 +4,7 @@ class AuthFixController {
 
     public async checkEncription(req: any, res: any) {
         let body = req.body
-        let encryptedPassword = authFixService.checkEncryption(body.data)
+        let encryptedPassword = await authFixService.checkEncryption(body.data)
         res.status(200).send({data: encryptedPassword})
     }
 
