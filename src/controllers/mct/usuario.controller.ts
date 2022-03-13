@@ -1,8 +1,9 @@
+import { Request, Response } from 'express'
 import UsuarioServices from '../../services/mct/usuario.services'
 
 class UsuarioController {
 
-    async listUsers(req: any, res: any) {
+    async listUsers(req: Request, res: Response) {
         try{
             let response = await UsuarioServices.listUsers()
 
@@ -16,7 +17,7 @@ class UsuarioController {
         }
     }
 
-    async listUsersAdmin(req: any, res: any) {
+    async listUsersAdmin(req: Request, res: Response) {
         try{
             let response = await UsuarioServices.listUsersAdmin()
 
@@ -30,11 +31,11 @@ class UsuarioController {
         }
     }
 
-    async getUser(req: any, res: any) {
+    async getUser(req: Request, res: Response) {
         let id = req.params.id
 
         try{
-            let response = await UsuarioServices.getUser(id)
+            let response = await UsuarioServices.getUser(Number(id))
 
             if(response != null)
                 res.status(200).send(response)
@@ -46,7 +47,7 @@ class UsuarioController {
         }
     }
 
-    async createUser(req: any, res: any) {
+    async createUser(req: Request, res: Response) {
         try {
             let user = req.body
             let response = await UsuarioServices.createUser(user)
@@ -61,7 +62,7 @@ class UsuarioController {
         }
     }
 
-    async createUserAdmin(req: any, res: any) {
+    async createUserAdmin(req: Request, res: Response) {
         try {
             let user = req.body
             let response = await UsuarioServices.createUserAdmin(user, 1)
@@ -76,11 +77,11 @@ class UsuarioController {
         }
     }
 
-    async updateUser(req: any, res: any) {
+    async updateUser(req: Request, res: Response) {
         try{
             let user = req.body
 
-            let response = await UsuarioServices.updateUser(user, req.params.id)
+            let response = await UsuarioServices.updateUser(user, Number(req.params.id))
 
             if(response != null)
                 res.status(200).send(response)
@@ -92,11 +93,11 @@ class UsuarioController {
         }
     }
 
-    async updateUserAdmin(req: any, res: any) {
+    async updateUserAdmin(req: Request, res: Response) {
         try{
             let user = req.body
 
-            let response = await UsuarioServices.updateUserAdmin(user, req.params.id)
+            let response = await UsuarioServices.updateUserAdmin(user, Number(req.params.id))
 
             if(response != null)
                 res.status(200).send(response)
@@ -108,11 +109,11 @@ class UsuarioController {
         }
     }
 
-    async deleteUser(req: any, res: any) {
+    async deleteUser(req: Request, res: Response) {
         let id = req.params.id
 
         try {
-            let response = await UsuarioServices.deleteUser(id)
+            let response = await UsuarioServices.deleteUser(Number(id))
 
             if(response != undefined)
                 res.status(200).send('Usuário excluído com sucesso')

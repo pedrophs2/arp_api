@@ -1,35 +1,38 @@
 import { Cliente } from './../../models/mct/cliente.model';
 import ClienteServices from '../../services/mct/cliente.services'
+import { Request, Response } from 'express';
 
 class ClienteController {
 
-    async listClientesByUsuario(req: any, res: any) {
+    async listClientesByUsuario(req: Request, res: Response) {
         try {
-            let response = await ClienteServices.listClientesByUsuario(req.params.usuario_id)
+            let response = await ClienteServices.listClientesByUsuario(Number(req.params.usuario_id))
 
             if(response != null)
                 res.status(200).send(response)
             else
                 res.status(204).send({message: 'Nenhum cliente encontrado'})
         } catch(error) {
-            res.status(500)({message: 'Erro no processo de requisição', error: error})
+            res.status(500).send({message: 'Erro no processo de requisição', error: error})
         }
     }
 
-    async listClientesByUsuarioCliente(req: any, res: any) {
+    async listClientesByUsuarioCliente(req: Request, res: Response) {
         try {
-            let response = await ClienteServices.listClientesByUsuarioCliente(req.params.usuario_id, req.params.cliente_id)
+            let response = await ClienteServices.listClientesByUsuarioCliente(
+                Number(req.params.usuario_id), Number(req.params.cliente_id)
+            )
 
             if(response != null)
                 res.status(200).send(response)
             else
                 res.status(204).send({message: 'Nenhum cliente encontrado'})
         } catch(error) {
-            res.status(500)({message: 'Erro no processo de requisição', error: error})
+            res.status(500).send({message: 'Erro no processo de requisição', error: error})
         }
     }
 
-    async createCliente (req: any, res: any) {
+    async createCliente (req: Request, res: Response) {
         try {
             let customer = <Cliente> req.body
             let response = await ClienteServices.createCliente(customer)
@@ -43,7 +46,7 @@ class ClienteController {
         }
     }
 
-    async updateCliente (req: any, res: any) {
+    async updateCliente (req: Request, res: Response) {
         try {
             let customer = <Cliente> req.body
             let response = await ClienteServices.updateCliente(customer)

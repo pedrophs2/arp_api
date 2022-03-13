@@ -1,9 +1,10 @@
+import { Request, Response } from 'express'
 import { Pessoa } from '../../models/csn/pessoa.model'
 import PessoasServices from '../../services/csn/pessoas.services'
 
 class PessoasController {
 
-    async listPessoasSemEscolha(req: any, res: any) {
+    async listPessoasSemEscolha(req: Request, res: Response) {
         try{
             let response = await PessoasServices.listPessoasSemEscolha()
 
@@ -17,7 +18,7 @@ class PessoasController {
         }
     }
 
-    async createPessoa(req: any, res: any) {
+    async createPessoa(req: Request, res: Response) {
         let pessoa: Pessoa = req.body
         console.log(pessoa)
 

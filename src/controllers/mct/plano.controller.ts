@@ -4,7 +4,7 @@ import PlanoServices from './../../services/mct/plano.services'
 
 class PlanoController {
 
-    async listPlanos(req: any, res: any) {
+    async listPlanos(req: Request, res: Response) {
         try { 
             let data = await PlanoServices.listPlanos()
 
@@ -17,9 +17,11 @@ class PlanoController {
         }
     }
 
-    async getPlano(req: any, res: any) {
+    async getPlano(req: Request, res: Response) {
         try { 
-            let data = await PlanoServices.getPlano(req.params.plano_id)
+            let data = await PlanoServices.getPlano(
+                Number(req.params.plano_id)
+            )
 
             if(data)
                 res.status(200).send(data)
@@ -30,7 +32,7 @@ class PlanoController {
         }
     }
 
-    async createPlano(req: any, res: any) {
+    async createPlano(req: Request, res: Response) {
         let plano = <Plano> req.body
 
         try {

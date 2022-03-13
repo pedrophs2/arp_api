@@ -1,8 +1,9 @@
+import { Request, Response } from 'express';
 import { PorcelanatoOrcamento } from './../../models/mct/porcelanato-orcamento';
 import PorcelanatoOrcamentoServices from './../../services/mct/porcelanato-orcamento.services'
 
 class PorcelanatoOrcamentoController {
-    async createPorcelanatoOrcamento(req: any, res: any) {
+    async createPorcelanatoOrcamento(req: Request, res: Response) {
         let orcamentoPorcelanato: PorcelanatoOrcamento = <PorcelanatoOrcamento> req.body
         try {
             let response = await PorcelanatoOrcamentoServices.createPorcelanatoOrcamento(orcamentoPorcelanato)
@@ -16,9 +17,11 @@ class PorcelanatoOrcamentoController {
         }
     }
 
-    async getPorcelanatosByOrcamento(req: any, res: any) {
+    async getPorcelanatosByOrcamento(req: Request, res: Response) {
         try {
-            let response = await PorcelanatoOrcamentoServices.getPorcelanatosByOrcamento(req.params.orcamento_id)
+            let response = await PorcelanatoOrcamentoServices.getPorcelanatosByOrcamento(
+                Number(req.params.orcamento_id)
+            )
 
             if(response)
                 res.status(200).send(response)

@@ -1,4 +1,4 @@
-import passCrypt from "../../../utils/pass-crypt";
+import passCrypt from "../../../utils/pass-salt";
 import db from '../../../config/database'
 import { Usuario } from "../../../models/mct/usuario.model";
 

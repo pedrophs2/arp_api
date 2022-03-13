@@ -1,8 +1,9 @@
 import { Porcelanato } from './../../models/mct/porcelanato.model';
 import PorcelanatoServices from '../../services/mct/porcelanato.services'
+import { Request, Response } from 'express';
 
 class PorcelanatoController {
-    async listPorcelanatos(req: any, res: any) {
+    async listPorcelanatos(req: Request, res: Response) {
         try {
             let response = await PorcelanatoServices.listPorcelanatos()
 
@@ -15,9 +16,11 @@ class PorcelanatoController {
         }
     }
 
-    async getPorcelanato(req: any, res: any) {
+    async getPorcelanato(req: Request, res: Response) {
         try {
-            let response = await PorcelanatoServices.getPorcelanato(req.params.porcelanato_id)
+            let response = await PorcelanatoServices.getPorcelanato(
+                Number(req.params.porcelanato_id)
+            )
 
             if(response != null)
                 res.status(200).send(response)
@@ -28,7 +31,7 @@ class PorcelanatoController {
         }
     }
 
-    async createPorcelanato(req: any, res: any) {
+    async createPorcelanato(req: Request, res: Response) {
         let porcelanato = req.body
 
         try {
@@ -43,11 +46,13 @@ class PorcelanatoController {
         }
     }
 
-    async updatePorcelanato(req: any, res: any) {
+    async updatePorcelanato(req: Request, res: Response) {
         let porcelanato: Porcelanato = req.body
 
         try {
-            let response = await PorcelanatoServices.updatePorcelanato(porcelanato, req.params.porcelanato_id)
+            let response = await PorcelanatoServices.updatePorcelanato(
+                porcelanato, Number(req.params.porcelanato_id)
+            )
 
             if(response != null)
                 res.status(200).send(response)
@@ -58,9 +63,11 @@ class PorcelanatoController {
         }
     }
 
-    async deletePorcelanato(req: any, res: any) {
+    async deletePorcelanato(req: Request, res: Response) {
         try {
-            let response = await PorcelanatoServices.deletePorcelanato(req.params.porcelanato_id)
+            let response = await PorcelanatoServices.deletePorcelanato(
+                Number(req.params.porcelanato_id)
+            )
 
             if(response != null)
                 res.status(200).send(response)

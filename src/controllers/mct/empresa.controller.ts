@@ -1,9 +1,10 @@
+import { Request, Response } from 'express'
 import { Empresa } from '../../models/mct/empresa.model'
 import EmpresaServices from '../../services/mct/empresa.services'
 
 class EmpresaController {
 
-    public async getEmpresas(req: any, res: any) {
+    public async getEmpresas(req: Request, res: Response) {
         try {
             let responseData = await EmpresaServices.getEmpresas()
 
@@ -17,9 +18,11 @@ class EmpresaController {
         }
     }
 
-    public async getEmpresasByUsuario(req: any, res: any) {
+    public async getEmpresasByUsuario(req: Request, res: Response) {
         try {
-            let responseData = await EmpresaServices.getEmpresaUsuario(req.params.cd_usuario)
+            let responseData = await EmpresaServices.getEmpresaUsuario(
+                Number(req.params.cd_usuario)
+            )
 
             if(responseData)
                 res.status(200).send(responseData)
@@ -31,7 +34,7 @@ class EmpresaController {
         }
     }
 
-    public async createEmpresa(req: any, res: any) {
+    public async createEmpresa(req: Request, res: Response) {
         try {
             const empresa = <Empresa> req.body
             let responseData = await EmpresaServices.createEmpresa(empresa)
@@ -46,7 +49,7 @@ class EmpresaController {
         }
     }
 
-    public async updateEmpresa(req: any, res: any) {
+    public async updateEmpresa(req: Request, res: Response) {
         try {
             const empresa = <Empresa> req.body
             let responseData = await EmpresaServices.updateEmpresa(empresa)

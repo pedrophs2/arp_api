@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import { Dashboard } from '../../models/mct/dashboard.model';
 import DashboardServices from '../../services/mct/dashboard.services'
 
@@ -5,11 +6,11 @@ class DashboardController {
 
     private _service = DashboardServices
 
-    public async getDashboard(req: any, res: any) {
+    public async getDashboard(req: Request, res: Response) {
         try {
             let cd_usuario = req.params.cd_usuario
 
-            let dashboard = await DashboardServices.mountDashboard(cd_usuario)
+            let dashboard = await DashboardServices.mountDashboard(Number(cd_usuario))
             
             if(dashboard)
                 res.status(200).send(dashboard)

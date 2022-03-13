@@ -1,10 +1,13 @@
+import { Request, Response } from 'express'
 import OrcamentoServices from '../../services/mct/orcamento.services'
 
 class OrcamentoController {
 
-    async listOrcamentos(req: any, res: any) {
+    async listOrcamentos(req: Request, res: Response) {
         try{
-            let response = await OrcamentoServices.listOrcamentos(req.params.usuario_id)
+            let response = await OrcamentoServices.listOrcamentos(
+                Number(req.params.usuario_id)
+            )
 
             if(response != null)
                 res.status(200).send(response)
@@ -16,12 +19,14 @@ class OrcamentoController {
         }
     }
 
-    async getOrcamentoById(req: any, res: any) {
+    async getOrcamentoById(req: Request, res: Response) {
         let usuario_id = req.params.usuario_id
         let orcamento_id = req.params.orcamento_id
 
         try{
-            let response = await OrcamentoServices.getOrcamentoById(orcamento_id, usuario_id)
+            let response = await OrcamentoServices.getOrcamentoById(
+                Number(orcamento_id), Number(usuario_id)
+            )
 
             if(response != null)
                 res.status(200).send(response)
@@ -33,7 +38,7 @@ class OrcamentoController {
         }
     }
 
-    async createOrcamento(req: any, res: any) {
+    async createOrcamento(req: Request, res: Response) {
         let orcamento = req.body
 
         try {
@@ -49,12 +54,12 @@ class OrcamentoController {
         }
     }
 
-    async updateOrcamento(req: any, res: any) {
+    async updateOrcamento(req: Request, res: Response) {
         let orcamento = req.body
         let id = req.params.id
 
         try{
-            let response = await OrcamentoServices.updateOrcamento(orcamento, id)
+            let response = await OrcamentoServices.updateOrcamento(orcamento, Number(id))
 
             if(response)
                 res.status(201).send('Orçamento atualizado')
@@ -66,11 +71,11 @@ class OrcamentoController {
         }
     }
 
-    async deleteOrcamento(req: any, res: any) {
+    async deleteOrcamento(req: Request, res: Response) {
         let id = req.params.id
 
         try {
-            let response = await OrcamentoServices.deleteOrcamento(id)
+            let response = await OrcamentoServices.deleteOrcamento(Number(id))
 
             if(response)
                 res.status(200).send('Orçamento excluído com sucesso')

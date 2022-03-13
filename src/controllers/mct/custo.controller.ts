@@ -1,11 +1,12 @@
 import { Custos } from './../../models/mct/custos.model'
 import CustoServices from '../../services/mct/custo.services'
+import { Request, Response } from 'express'
 
 class CustoController {
 
-    public async getCusto(req: any, res: any) {
+    public async getCusto(req: Request, res: Response) {
         try {
-            let response = await CustoServices.getCusto(req.params.usuario_id)
+            let response = await CustoServices.getCusto(Number(req.params.usuario_id))
 
             if(response)
                 res.status(200).send(response)
@@ -16,9 +17,9 @@ class CustoController {
         }
     }
 
-    public async setCusto(req: any, res: any) {
+    public async setCusto(req: Request, res: Response) {
         let custos: Custos = <Custos> req.body
-        custos.custos_id_usuario = req.params.usuario_id
+        custos.custos_id_usuario = Number(req.params.usuario_id)
         console.log(custos)
 
         try {

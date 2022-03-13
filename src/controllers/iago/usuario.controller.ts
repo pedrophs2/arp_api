@@ -1,8 +1,9 @@
+import { Request, Response } from 'express'
 import UsuarioServices from '../../services/iago/usuario.services'
 
 export class UsuarioController {
     
-    async listUsuarios(req: any, res:any) {
+    async listUsuarios(req: Request, res: Response) {
         try {
             let data = await UsuarioServices.listUsuarios()
 

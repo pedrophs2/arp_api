@@ -7,6 +7,7 @@ import path from 'path'
 import moment from 'moment'
 import EmpresaServices from '../../../services/mct/empresa.services'
 import usuarioServices from '../usuario.services';
+import { Request, Response } from 'express';
 
 var orcamento = path.join(__dirname, '../../../assets/html/orcamento-resumido.html')
 var filename = orcamento.replace('.html', '.pdf').replace('\\html\\', '\\pdf\\')
@@ -20,7 +21,7 @@ const options: pdf.CreateOptions = {
 
 class OrcamentoPDFServices {
 
-    async generatePDFOrcamento(req: any, res: any) {
+    async generatePDFOrcamento(req: Request, res: Response) {
         try {
             let orcamento = req.body
             let tmpString: string = orcamentoHtml.toString()

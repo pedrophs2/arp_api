@@ -1,9 +1,10 @@
+import { Request, Response } from "express";
 import { Venda } from "../../models/mct/venda.model";
 import VendaServices from '../../services/mct/venda.services'
 
 class VendaController {
 
-    async vendaCredito(req: any, res: any) {
+    async vendaCredito(req: Request, res: Response) {
         try { 
             let response = await VendaServices.vendaCredito(req.body)
 

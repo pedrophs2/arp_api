@@ -1,8 +1,9 @@
+import { Request, Response } from 'express'
 import ItensServices from '../../services/csn/itens.services'
 
 class ItensController {
 
-    async listPendentes(req: any, res: any) {
+    async listPendentes(req: Request, res: Response) {
         try {
             let response = await ItensServices.listPendentes()
 
@@ -16,7 +17,7 @@ class ItensController {
         }
     }
 
-    async itemPicked(req: any, res: any) {
+    async itemPicked(req: Request, res: Response) {
         try{
             let response = await ItensServices.itemPicked(req.body.id_pessoa, req.body.id_item)
 
